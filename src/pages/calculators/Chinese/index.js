@@ -10,9 +10,11 @@ import {
   Card as MuiCard,
   CardContent as MuiCardContent,
   CardHeader,
+  Button,
   IconButton,
 } from "@mui/material";
 import { spacing } from "@mui/system";
+import CRTCalculator from "./CRTCalculator";
 
 
 
@@ -59,11 +61,14 @@ function Chinese() {
 
     <Card mb={6}>
       <CardHeader
-       title="Try it Out"
+       title="Solving a System of Congruence"
       />
       <CardContent>
-(todo: put cool stuff here)
-      </CardContent>
+
+        <CRTCalculator />
+
+
+             </CardContent>
     </Card>
 
     </React.Fragment>
