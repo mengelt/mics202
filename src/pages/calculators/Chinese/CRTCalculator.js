@@ -4,15 +4,23 @@ import {
     Grid,
     Divider as MuiDivider,
     Typography as MuiTypography,
-    Card as MuiCard,
-    CardContent as MuiCardContent,
+    Card,
+    CardContent,
     CardHeader,
+    CardActions,
     Button,
+    Typography,
     IconButton,
     TextField,
     
   } from "@mui/material";
 
+const MAX_ITERATIONS = 100_000;
+
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
 
 function CRTCalculator(props) {
 
@@ -33,7 +41,7 @@ function CRTCalculator(props) {
                 break;
             }
             i++;
-            if ( i > 100000 ) {
+            if ( i > MAX_ITERATIONS ) {
                 return null;
             }
         }
@@ -59,6 +67,36 @@ function CRTCalculator(props) {
         })
     }
 
+    const handleRandomize = () => {
+        let tv1 = getRandomInt(5)+5
+        let tm1 = tv1 - getRandomInt(3) - 1;
+        v1.current.value = tv1;
+        m1.current.value = tm1;
+
+
+        let tv2 = getRandomInt(5)+5
+        let tm2 = tv2 - getRandomInt(3) - 1;
+        v2.current.value = tv2;
+        m2.current.value = tm2;
+
+        let tv3 = getRandomInt(5)+5
+        let tm3 = tv3 - getRandomInt(3) - 1;
+        v3.current.value = tv3;
+        m3.current.value = tm3;
+
+
+    }
+
+
+    const handleResetCalculator = () => {
+        v1.current.value = '1';
+        v2.current.value = '4';
+        v3.current.value = '6';
+        m1.current.value = '3';
+        m2.current.value = '5';
+        m3.current.value = '7';
+    }
+
     const handleSolutionClick = () => {
 
         setResultComplete(false);
@@ -78,23 +116,55 @@ function CRTCalculator(props) {
     }
 
     return (
-        <span>
+        <Card mb={6}>
+        <CardContent>
+        <Typography variant="h5" component="div">
+      Solving a System of Congruence
+      </Typography>
+      <Typography sx={{ mb: 1.5 }} color="text.secondary">
+      Given coprime moduli and integer values the system of congruences has a solution
+      </Typography>
+<br />
+  <span>
             {/*renderInputs(inputs)*/}
             
     
-            <div> x = <TextField inputRef={v1} defaultValue={1} variant="standard" /> mod <TextField defaultValue={3} inputRef={m1} variant="standard" /> </div>
-            <div> x = <TextField inputRef={v2} defaultValue={4} variant="standard" /> mod <TextField defaultValue={5} inputRef={m2} variant="standard" /> </div>
-            <div> x = <TextField inputRef={v3} defaultValue={6} variant="standard" /> mod <TextField defaultValue={7} inputRef={m3} variant="standard" /> </div>
+            <div>
+                <strong style={{fontSize: '1.2em'}}>x &#8780;</strong>
+                <TextField inputProps={{min: 0, style: { textAlign: 'center' }}} style={{width: 40}} inputRef={v1} defaultValue={1} variant="standard" /> mod 
+                <TextField inputProps={{min: 0, style: { textAlign: 'center' }}} style={{width: 40}} defaultValue={3} inputRef={m1} variant="standard" />
+            </div>
+            <div>
+                <strong style={{fontSize: '1.2em'}}>x &#8780;</strong>
+                <TextField inputProps={{min: 0, style: { textAlign: 'center' }}} style={{width: 40}} inputRef={v2} defaultValue={4} variant="standard" /> mod 
+                <TextField inputProps={{min: 0, style: { textAlign: 'center' }}} style={{width: 40}} defaultValue={5} inputRef={m2} variant="standard" />
+            </div>
+            <div>
+                <strong style={{fontSize: '1.2em'}}>x &#8780;</strong>
+                <TextField inputProps={{min: 0, style: { textAlign: 'center' }}} style={{width: 40}} inputRef={v3} defaultValue={6} variant="standard" /> mod 
+                <TextField inputProps={{min: 0, style: { textAlign: 'center' }}} style={{width: 40}} defaultValue={7} inputRef={m3} variant="standard" />
+            </div>
+
+
 
             {resultComplete && 
                 <span>
-                    {result === null && <span>No solution exists</span>}
-                    {result !== null && <span style={{color: 'green', fontSize: '24px', fontWeight: 'bold'}}>x &#8780; {result}</span>}
+                    <br />
+                    {result === null && <span style={{color: 'red', fontSize: '24px', fontWeight: 'bold'}}>No solution exists</span>}
+                    {result !== null && <span style={{color: 'green', fontSize: '24px', fontWeight: 'bold'}}>x = {result}</span>}
                 </span>}
             <br />
-            <Button variant="outlined" onClick={handleSolutionClick}>Find Solution</Button>
-            
+ 
         </span>
+        </CardContent>
+        <CardActions>
+        <Button size="small" onClick={handleSolutionClick}>Find Solution</Button>
+        <Button size="small" onClick={handleRandomize}>Randomize Congruence</Button>
+        <Button size="small" onClick={handleResetCalculator}>Reset</Button>
+        <Button size="small">About Calculator</Button>
+      </CardActions>
+         </Card>
+  
     )
 }
 

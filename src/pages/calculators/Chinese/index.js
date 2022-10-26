@@ -32,12 +32,13 @@ const CardContent = styled(MuiCardContent)`
   }
 `;
 
+
 function Chinese() {
   const { t } = useTranslation();
 
   return (
     <React.Fragment>
-      <Helmet title="CRT Dashboard" />
+      <Helmet title="Chinese Remainder Theorem" />
       <Grid justifyContent="space-between" container spacing={6}>
         <Grid item>
           <Typography variant="h3" gutterBottom>
@@ -59,17 +60,7 @@ function Chinese() {
       </CardContent>
     </Card>
 
-    <Card mb={6}>
-      <CardHeader
-       title="Solving a System of Congruence"
-      />
-      <CardContent>
-
-        <CRTCalculator />
-
-
-             </CardContent>
-    </Card>
+    <CRTCalculator />
 
     </React.Fragment>
   );

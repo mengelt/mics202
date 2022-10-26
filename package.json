@@ -1,8 +1,8 @@
 {
-  "name": "mira",
-  "version": "4.2.0",
-  "description": "Mira Pro - React Material Admin Dashboard Template",
-  "author": "Bootlab <support@bootlab.io>",
+  "name": "mics202 - final project",
+  "version": "1.0.0",
+  "description": "MICS202 - Final Project",
+  "author": "Mark Mengelt <mmengelt@berkeley.edu>",
   "private": true,
   "license": "https://mui.com/store/license/",
   "scripts": {
