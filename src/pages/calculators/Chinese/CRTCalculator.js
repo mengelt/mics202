@@ -1,20 +1,24 @@
 import { useState, useRef } from 'react';
+import styled from "@emotion/styled";
 
 import {
+    Alert,
     Grid,
     Divider as MuiDivider,
     Typography as MuiTypography,
     Card,
-    CardContent,
+    CardContent as MuiCardContent,
     CardHeader,
     CardActions,
     Button,
+    Modal,
+    Box,
     Typography,
     IconButton,
     TextField,
-    
+    Popover,    
   } from "@mui/material";
-
+  
 const MAX_ITERATIONS = 100_000;
 
 
@@ -22,10 +26,31 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }
 
+const CardContent = styled(MuiCardContent)`
+  border-bottom: 1px solid ${(props) => props.theme.palette.grey[300]};
+`;
+
+const modalStyle = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
+
 function CRTCalculator(props) {
 
     const [working, setWorking] = useState(false);
     const [result, setResult] = useState(null);
+    
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);    
+
     const [resultComplete, setResultComplete] = useState(false);
     const v1 = useRef();
     const m1 = useRef();
@@ -48,24 +73,6 @@ function CRTCalculator(props) {
         return i
     }
 
-    const handleValueChange = (e) => {
-        console.info(e);
-        console.info(e.target.value)
-        console.info(e.target.getAttribute("value"))
-    }
-    
-    const handleModChange = (e) => {
-        console.info(e);
-    }
-    const renderInputs = (inputs) => {
-        return inputs.map( (input, x) => {
-            return (
-                <div>x &#8780; 
-                    <TextField data-row={input.row} data-name="value" onChange={handleValueChange} label="coefficient" variant="standard" value={input.value} /> 
-                    (mod <TextField data-row={input.row} data-name="mod" onChange={handleModChange} label="mod" variant="standard" value={input.mod} />)</div>
-            )
-        })
-    }
 
     const handleRandomize = () => {
 
@@ -88,6 +95,7 @@ function CRTCalculator(props) {
         m3.current.value = tv3;
         v3.current.value = tm3;
 
+        handleSolutionClick();
 
     }
 
@@ -104,6 +112,7 @@ function CRTCalculator(props) {
         m2.current.value = '5';
         m3.current.value = '7';
     }
+
 
     const handleSolutionClick = () => {
 
@@ -158,19 +167,34 @@ function CRTCalculator(props) {
             {resultComplete && 
                 <span>
                     <br />
-                    {result === null && <span style={{color: 'red', fontSize: '24px', fontWeight: 'bold'}}>No solution exists</span>}
-                    {result !== null && <span style={{color: 'green', fontSize: '24px', fontWeight: 'bold'}}>x = {result}</span>}
+                    
+                    {result === null && <Alert severity="error">No solution exists. Check your inputs and ensure your moduli are coprime!</Alert>}
+                    {result !== null && <Alert severity="success">A solution for this congruence is: <strong>x = {result}</strong></Alert>}
                 </span>}
             <br />
  
         </span>
         </CardContent>
         <CardActions>
-        <Button size="small" onClick={handleSolutionClick}>Find Solution</Button>
-        <Button size="small" onClick={handleRandomize}>Randomize Congruence</Button>
-        <Button size="small" onClick={handleResetCalculator}>Reset</Button>
-        <Button size="small">About Calculator</Button>
-      </CardActions>
+            <Button size="small" onClick={handleSolutionClick}>Find Solution</Button>
+            <Button size="small" onClick={handleRandomize}>Randomize Congruence</Button>
+            <Button size="small" onClick={handleResetCalculator}>Reset</Button>
+            <Button size="small" onClick={handleOpen}>About Calculator</Button>
+            <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={modalStyle}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            CRT Calculator Limitations
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            For performance and memory reasons, the calculator stops searching for solutions at 100,000.
+          </Typography>
+        </Box>
+      </Modal>            </CardActions>
          </Card>
   
     )
