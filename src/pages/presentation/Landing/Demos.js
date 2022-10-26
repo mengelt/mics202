@@ -60,7 +60,7 @@ const Variant = ({ theme, title, img, isNew = false }) => {
 
   const toggleDemo = (theme) => {
     setTheme(theme);
-    navigate("/dashboard/analytics");
+    navigate("/calculators/chinese");
   };
 
   return (
