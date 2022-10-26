@@ -68,27 +68,35 @@ function CRTCalculator(props) {
     }
 
     const handleRandomize = () => {
+
+        setResultComplete(false);
+        setResult(null);
+
         let tv1 = getRandomInt(5)+5
         let tm1 = tv1 - getRandomInt(3) - 1;
-        v1.current.value = tv1;
-        m1.current.value = tm1;
+        m1.current.value = tv1;
+        v1.current.value = tm1;
 
 
         let tv2 = getRandomInt(5)+5
         let tm2 = tv2 - getRandomInt(3) - 1;
-        v2.current.value = tv2;
-        m2.current.value = tm2;
+        m2.current.value = tv2;
+        v2.current.value = tm2;
 
         let tv3 = getRandomInt(5)+5
         let tm3 = tv3 - getRandomInt(3) - 1;
-        v3.current.value = tv3;
-        m3.current.value = tm3;
+        m3.current.value = tv3;
+        v3.current.value = tm3;
 
 
     }
 
 
     const handleResetCalculator = () => {
+
+        setResultComplete(false);
+        setResult(null);
+
         v1.current.value = '1';
         v2.current.value = '4';
         v3.current.value = '6';
