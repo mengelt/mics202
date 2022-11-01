@@ -14,7 +14,9 @@ import {
   IconButton,
 } from "@mui/material";
 import { spacing } from "@mui/system";
+
 import CRTCalculator from "./CRTCalculator";
+import CRTNotation from "./CRTNotation";
 
 
 
@@ -51,14 +53,15 @@ function Chinese() {
 
 
       <Card mb={6}>
-      <CardHeader
-       title="What is it?"
-      />
-      <CardContent>
+        <CardHeader title="Modular Arithmetic" />
+        <CardContent>
+        (todo: put stuff from google doc here)
+        </CardContent>
+      </Card>
 
-      (todo: put cool stuff here)
-      </CardContent>
-    </Card>
+      <CRTNotation />
+
+    <br />
 
     <CRTCalculator />
 

@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 
 import {
     Alert,
+    Chip,
     Grid,
     Divider as MuiDivider,
     Typography as MuiTypography,
@@ -139,7 +140,7 @@ function CRTCalculator(props) {
       Solving a System of Congruence
       </Typography>
       <Typography sx={{ mb: 1.5 }} color="text.secondary">
-      Given coprime moduli and integer values the system of congruences has a solution
+        When given coprime moduli and arbitrary integer values, the system of congruence has a solution.
       </Typography>
 <br />
   <span>

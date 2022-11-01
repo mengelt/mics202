@@ -1,0 +1,5 @@
+.crtnotation + .crtnotation::before {
+    display: inline-block;
+    white-space: pre;
+    content: ", ";
+  }

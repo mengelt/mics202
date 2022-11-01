@@ -9,11 +9,13 @@ import {
   Typography as MuiTypography,
   Card as MuiCard,
   CardContent as MuiCardContent,
+  Paper as MuiPaper,
   CardHeader,
   IconButton,
 } from "@mui/material";
 import { spacing } from "@mui/system";
 
+import GCDCalculator from "./GCDCalculator";
 
 
 const Divider = styled(MuiDivider)(spacing);
@@ -47,24 +49,7 @@ function GCD() {
       <Divider my={6} />
 
 
-      <Card mb={6}>
-      <CardHeader
-       title="What is it?"
-      />
-      <CardContent>
-
-      (todo: put cool stuff here)
-      </CardContent>
-    </Card>
-
-    <Card mb={6}>
-      <CardHeader
-       title="Try it Out"
-      />
-      <CardContent>
-(todo: put cool stuff here)
-      </CardContent>
-    </Card>
+      <GCDCalculator />
 
     </React.Fragment>
   );
