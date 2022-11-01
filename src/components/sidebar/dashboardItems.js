@@ -34,6 +34,10 @@ const pagesSection = [
         title: "Euler's Totient Function",
       },
       {
+        href: "/calculators/multiplicitiveinverse",
+        title: "Multiplicitive Inverse",
+      },
+      {
         href: "/calculators/gcd",
         title: "GCD",
       },

@@ -89,6 +89,7 @@ const Chinese = async(() => import("./pages/calculators/Chinese"));
 const EulersTotient = async(() => import("./pages/calculators/EulersTotient"));
 const GCD = async(() => import("./pages/calculators/GCD"));
 const Factors = async(() => import("./pages/calculators/Factors"));
+const MultiplicitiveInverse = async(() => import("./pages/calculators/MultiplicitiveInverse"));
 
 // Dashboard components
 const Default = async(() => import("./pages/dashboards/Default"));
@@ -138,6 +139,11 @@ const routes = [
         path: "GCD",
         element: <GCD />,
       },
+      {
+        path: "multiplicitiveinverse",
+        element: <MultiplicitiveInverse />,
+      },
+      
     ]
   }, 
   {
@@ -183,6 +189,11 @@ const routes = [
         path: "factors",
         element: <Factors />,
       },
+      {
+        path: "multiplicitiveinverse",
+        element: <MultiplicitiveInverse />,
+      },
+
     ]
   },
   {

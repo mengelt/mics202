@@ -20,7 +20,7 @@ import {
     TextField,
     Popover,    
   } from "@mui/material";
-import { areCoprime, findFactors, gcd_two_values } from '../../../utils/mathUtils';
+import { areCoprime, gcd_two_values } from '../../../utils/mathUtils';
 
 import { spacing } from "@mui/system";
 
@@ -48,7 +48,7 @@ const modalStyle = {
     p: 4,
   };
 
-function Factors(props) {
+function MICalculator(props) {
 
     const [working, setWorking] = useState(false);
     const [result, setResult] = useState(null);
@@ -86,25 +86,32 @@ function Factors(props) {
 
     const handleSolutionClick = () => {
 
-      let factors = findFactors(v1.current.value);
-
-      setResult(factors)
+      let gcdResult = gcd_two_values(v1.current.value, v2.current.value)
+      setResult(gcdResult);
       setResultComplete(true);
 
     }
 
+    let isCoprime = null;
+    if ( result !== null ) {
+      isCoprime = areCoprime(v1.current.value, v2.current.value) === true 
+    }
 
+    console.info({result})
 
     return (
         <Card mb={6}>
           <CardContent>
             <Typography variant="h5" component="div">
-              Find Factors for N
+              Finding a Multiplicitive Inverse
             </Typography>
             <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            A factor is a number that divides into another number and leaves no remainder
+            If your values are coprime, you can find the multiplicitive inverse
             </Typography>
 
+            <div>coming soon to a browser near you</div>
+
+{/*
             <br />
             <Paper mt={3}>
           <form noValidate autoComplete="off">
@@ -113,30 +120,37 @@ function Factors(props) {
               required
               inputRef={v1}
               id="standard-required"
-              label="Enter Value for N"              
+              label="Value 1"              
             />
-
+            <br /><br />
+            <TextField
+              m={2}
+              required
+              inputRef={v2}
+              id="standard-required"
+              label="Value 2"
+            />
             </form>
             </Paper>
 
+          */}
             <span>
-
 
             {resultComplete && 
                 <span>
                     <br />
-                    {result !== null && <Alert severity="success"><strong>{v1.current.value.toLocaleString("en-US")}</strong> has <strong>{result.length}</strong> factors</Alert>}
+                    {result === null && <Alert severity="error">No solution exists. Check your inputs and ensure your moduli are coprime!</Alert>}
+                    {result !== null && <Alert severity="success">The greatet common divisor of <strong>{v1.current.value}</strong> and <strong>{v2.current.value}</strong> is <strong>{result}</strong></Alert>}
                     <br />
-                    {result.map(r => {
-                      return <Chip style={{margin: '5px'}} size='small' color='primary' variant="outlined" key={r} label={r.toLocaleString("en-US")} />
-                    })}
+                    {(result !== null && isCoprime) && <Alert severity="success">These values are coprime.</Alert> }
+                    {(result !== null && !isCoprime) && <Alert severity="error">These values are not coprime.</Alert> }
                 </span>}
             <br />
  
         </span>
         </CardContent>
         <CardActions>
-            <Button size="small" onClick={handleSolutionClick}>Find Factors</Button>
+            <Button size="small" onClick={handleSolutionClick}>Find Inverse</Button>
             <Button size="small" onClick={handleResetCalculator}>Reset</Button>
             <Button size="small" onClick={handleOpen}>About Calculator</Button>
             <Modal
@@ -147,10 +161,10 @@ function Factors(props) {
       >
         <Box sx={modalStyle}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Factor Finding Limitations
+            Multiplicitive Inverse Calculator Limitations
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            For performance and memory reasons stick to numbers under 1,000,000. Larger values may work but use at your own risk :)
+            For performance and memory reasons stick to numbers under 10,000.
           </Typography>
         </Box>
       </Modal>            </CardActions>
@@ -159,4 +173,4 @@ function Factors(props) {
     )
 }
 
-export default Factors;
+export default MICalculator;
