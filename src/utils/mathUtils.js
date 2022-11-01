@@ -7,8 +7,23 @@ export const gcd_two_values = (x, y) => {
       y = x % y;
       x = t;
     }
-    console.info('EEE', x)
     return x;
+}
+
+export const eulersTotient = (value) => {
+
+    if ( isPrime(value) ) {
+        return value-1;
+    } else {
+        let found = 0;
+        for (let x = value; x > 0; x-- ) {
+            if ( areCoprime(value, x) ) {
+                found++;
+            }
+        }
+        return found;
+    }
+
 }
 
 export const areCoprime = (value1, value2) => {

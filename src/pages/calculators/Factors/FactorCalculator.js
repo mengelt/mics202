@@ -20,7 +20,7 @@ import {
     TextField,
     Popover,    
   } from "@mui/material";
-import { areCoprime, gcd_two_values } from '../../../utils/mathUtils';
+import { areCoprime, findFactors, gcd_two_values } from '../../../utils/mathUtils';
 
 import { spacing } from "@mui/system";
 
@@ -48,7 +48,7 @@ const modalStyle = {
     p: 4,
   };
 
-function GCDCalculator(props) {
+function Factors(props) {
 
     const [working, setWorking] = useState(false);
     const [result, setResult] = useState(null);
@@ -86,24 +86,20 @@ function GCDCalculator(props) {
 
     const handleSolutionClick = () => {
 
-      let gcdResult = gcd_two_values(v1.current.value, v2.current.value)
-      setResult(gcdResult);
+      let factors = findFactors(v1.current.value);
+
+      setResult(factors)
       setResultComplete(true);
 
     }
 
-    let isCoprime = null;
-    if ( result !== null ) {
-      isCoprime = areCoprime(v1.current.value, v2.current.value) === true 
-    }
 
-    console.info({result})
 
     return (
         <Card mb={6}>
           <CardContent>
             <Typography variant="h5" component="div">
-              Finding a Greatest Common Divisor
+              Find Factors for N
             </Typography>
 
             <br />
@@ -114,16 +110,9 @@ function GCDCalculator(props) {
               required
               inputRef={v1}
               id="standard-required"
-              label="Value 1"              
+              label="Enter Value for N"              
             />
-            <br /><br />
-            <TextField
-              m={2}
-              required
-              inputRef={v2}
-              id="standard-required"
-              label="Value 2"
-            />
+
             </form>
             </Paper>
 
@@ -133,19 +122,18 @@ function GCDCalculator(props) {
             {resultComplete && 
                 <span>
                     <br />
-                    {result === null && <Alert severity="error">No solution exists. Check your inputs and ensure your moduli are coprime!</Alert>}
-                    {result !== null && <Alert severity="success">The greatet common divisor of <strong>{v1.current.value}</strong> and <strong>{v2.current.value}</strong> is <strong>{result}</strong></Alert>}
+                    {result !== null && <Alert severity="success"><strong>{v1.current.value.toLocaleString("en-US")}</strong> has <strong>{result.length}</strong> factors</Alert>}
                     <br />
-                    {(result !== null && isCoprime) && <Alert severity="success">These values are coprime.</Alert> }
-                    {(result !== null && !isCoprime) && <Alert severity="error">These values are not coprime.</Alert> }
+                    {result.map(r => {
+                      return <Chip style={{margin: '5px'}} size='small' color='primary' variant="outlined" key={r} label={r.toLocaleString("en-US")} />
+                    })}
                 </span>}
             <br />
  
         </span>
         </CardContent>
         <CardActions>
-            <Button size="small" onClick={handleSolutionClick}>Find GCD</Button>
-            <Button size="small" onClick={handleRandomize}>Randomize GCD</Button>
+            <Button size="small" onClick={handleSolutionClick}>Find Factors</Button>
             <Button size="small" onClick={handleResetCalculator}>Reset</Button>
             <Button size="small" onClick={handleOpen}>About Calculator</Button>
             <Modal
@@ -156,10 +144,10 @@ function GCDCalculator(props) {
       >
         <Box sx={modalStyle}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            GCD Calculator Limitations
+            Factor Finding Limitations
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            For performance and memory reasons stick to numbers under 10,000.
+            For performance and memory reasons stick to numbers under 1,000,000. Larger values may work but use at your own risk :)
           </Typography>
         </Box>
       </Modal>            </CardActions>
@@ -168,4 +156,4 @@ function GCDCalculator(props) {
     )
 }
 
-export default GCDCalculator;
+export default Factors;

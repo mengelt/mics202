@@ -60,6 +60,7 @@ const Variant = ({ theme, title, img, isNew = false }) => {
 
   const toggleDemo = (theme) => {
     setTheme(theme);
+    alert('yes')
     navigate("/calculators/chinese");
   };
 

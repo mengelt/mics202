@@ -20,7 +20,7 @@ import {
     TextField,
     Popover,    
   } from "@mui/material";
-import { areCoprime, gcd_two_values } from '../../../utils/mathUtils';
+import { areCoprime, eulersTotient, gcd_two_values, isPrime } from '../../../utils/mathUtils';
 
 import { spacing } from "@mui/system";
 
@@ -48,7 +48,7 @@ const modalStyle = {
     p: 4,
   };
 
-function GCDCalculator(props) {
+function EulersTotientCalculator(props) {
 
     const [working, setWorking] = useState(false);
     const [result, setResult] = useState(null);
@@ -86,25 +86,24 @@ function GCDCalculator(props) {
 
     const handleSolutionClick = () => {
 
-      let gcdResult = gcd_two_values(v1.current.value, v2.current.value)
-      setResult(gcdResult);
+      let resultValue = eulersTotient(v1.current.value);
+      setResult(resultValue);
       setResultComplete(true);
 
     }
 
-    let isCoprime = null;
-    if ( result !== null ) {
-      isCoprime = areCoprime(v1.current.value, v2.current.value) === true 
-    }
-
-    console.info({result})
-
     return (
         <Card mb={6}>
           <CardContent>
+            
             <Typography variant="h5" component="div">
-              Finding a Greatest Common Divisor
+              Euler&apos;s Totient Calculator
             </Typography>
+            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+            Find how many numbers less an N that are coprime to a N
+            </Typography>
+
+
 
             <br />
             <Paper mt={3}>
@@ -114,15 +113,7 @@ function GCDCalculator(props) {
               required
               inputRef={v1}
               id="standard-required"
-              label="Value 1"              
-            />
-            <br /><br />
-            <TextField
-              m={2}
-              required
-              inputRef={v2}
-              id="standard-required"
-              label="Value 2"
+              label="Enter an Integer N"              
             />
             </form>
             </Paper>
@@ -133,18 +124,14 @@ function GCDCalculator(props) {
             {resultComplete && 
                 <span>
                     <br />
-                    {result === null && <Alert severity="error">No solution exists. Check your inputs and ensure your moduli are coprime!</Alert>}
-                    {result !== null && <Alert severity="success">The greatet common divisor of <strong>{v1.current.value}</strong> and <strong>{v2.current.value}</strong> is <strong>{result}</strong></Alert>}
-                    <br />
-                    {(result !== null && isCoprime) && <Alert severity="success">These values are coprime.</Alert> }
-                    {(result !== null && !isCoprime) && <Alert severity="error">These values are not coprime.</Alert> }
+                    {result !== null && <Alert severity="success">Φ({v1.current.value}) = <strong>{result}</strong></Alert>}
                 </span>}
             <br />
  
         </span>
         </CardContent>
         <CardActions>
-            <Button size="small" onClick={handleSolutionClick}>Find GCD</Button>
+            <Button size="small" onClick={handleSolutionClick}>Calculate</Button>
             <Button size="small" onClick={handleRandomize}>Randomize GCD</Button>
             <Button size="small" onClick={handleResetCalculator}>Reset</Button>
             <Button size="small" onClick={handleOpen}>About Calculator</Button>
@@ -156,10 +143,10 @@ function GCDCalculator(props) {
       >
         <Box sx={modalStyle}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            GCD Calculator Limitations
+            Euler&apos;s Totient Calculator Limitations
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            For performance and memory reasons stick to numbers under 10,000.
+            For performance and memory reasons, stick to numbers under 1,000,000. Larger values may work but use at your own risk :)
           </Typography>
         </Box>
       </Modal>            </CardActions>
@@ -168,4 +155,4 @@ function GCDCalculator(props) {
     )
 }
 
-export default GCDCalculator;
+export default EulersTotientCalculator;

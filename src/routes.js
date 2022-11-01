@@ -88,6 +88,7 @@ import ProtectedPage from "./pages/protected/ProtectedPage";
 const Chinese = async(() => import("./pages/calculators/Chinese"));
 const EulersTotient = async(() => import("./pages/calculators/EulersTotient"));
 const GCD = async(() => import("./pages/calculators/GCD"));
+const Factors = async(() => import("./pages/calculators/Factors"));
 
 // Dashboard components
 const Default = async(() => import("./pages/dashboards/Default"));
@@ -121,6 +122,10 @@ const routes = [
     path: "/",
     element: <DashboardLayout />,
     children: [
+      {
+        path: "factors",
+        element: <Factors />,
+      },
       {
         path: "eulerstotient",
         element: <EulersTotient />,
@@ -174,6 +179,10 @@ const routes = [
         element: <EulersTotient />,
       },
 
+      {
+        path: "factors",
+        element: <Factors />,
+      },
     ]
   },
   {
