@@ -63,12 +63,7 @@ function EulersTotientCalculator(props) {
 
     const handleRandomize = () => {
 
-        setResultComplete(false);
-        setResult(null);
-
-        v1.current.value = parseInt( Math.random()*1000 );
-        v2.current.value = parseInt( Math.random()*1000 );
-
+        v1.current.value = parseInt( Math.random()*100000 );
         handleSolutionClick();
 
     }
@@ -132,7 +127,7 @@ function EulersTotientCalculator(props) {
         </CardContent>
         <CardActions>
             <Button size="small" onClick={handleSolutionClick}>Calculate</Button>
-            <Button size="small" onClick={handleRandomize}>Randomize GCD</Button>
+            <Button size="small" onClick={handleRandomize}>Randomize N</Button>
             <Button size="small" onClick={handleResetCalculator}>Reset</Button>
             <Button size="small" onClick={handleOpen}>About Calculator</Button>
             <Modal

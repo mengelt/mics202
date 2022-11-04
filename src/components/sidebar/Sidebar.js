@@ -69,7 +69,7 @@ const Sidebar = ({ items, showFooter = true, ...rest }) => {
     <Drawer variant="permanent" {...rest}>
       <Brand component={NavLink} to="/">
         <Box ml={1}>
-          MICS202
+          MICS202<span style={{color: 'yellow'}}>TOOLS</span>
         </Box>
       </Brand>
       <SidebarNav items={items} />

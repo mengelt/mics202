@@ -5,7 +5,6 @@ import {
     Alert,
     Chip,
     Grid,
-    Avatar,
     Divider as MuiDivider,
     Typography as MuiTypography,
     Card,
@@ -21,7 +20,7 @@ import {
     TextField,
     Popover,    
   } from "@mui/material";
-import { areCoprime, findFactors, gcd_two_values, isPrime, primeFactorize } from '../../../utils/mathUtils';
+import { areCoprime, gcd_two_values, primeFactorize } from '../../../utils/mathUtils';
 
 import { spacing } from "@mui/system";
 
@@ -49,7 +48,7 @@ const modalStyle = {
     p: 4,
   };
 
-function Factors(props) {
+function PrimeFactorizationCalculator(props) {
 
     const [working, setWorking] = useState(false);
     const [result, setResult] = useState(null);
@@ -68,7 +67,6 @@ function Factors(props) {
         setResult(null);
 
         v1.current.value = parseInt( Math.random()*1000 );
-        v2.current.value = parseInt( Math.random()*1000 );
 
         handleSolutionClick();
 
@@ -81,15 +79,16 @@ function Factors(props) {
         setResult(null);
 
         v1.current.value = null;
-        v2.current.value = null;
+        
     }
 
 
     const handleSolutionClick = () => {
 
-      let factors = findFactors(v1.current.value);
-
-      setResult(factors)
+      console.info(v1.current.value)
+      let primeFactors = primeFactorize(v1.current.value);
+      primeFactors.reverse();
+      setResult(primeFactors);
       setResultComplete(true);
 
     }
@@ -99,13 +98,15 @@ function Factors(props) {
         <Card mb={6}>
           <CardContent>
             <Typography variant="h5" component="div">
-              Find Factors for N
+              Prime Factorization Calculator
             </Typography>
             <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            A factor is a number that divides into another number and leaves no remainder
+            Prime factorization is a process of writing a number as a product of primes.
             </Typography>
 
-            <br />
+            
+          <br />
+            
             <Paper mt={3}>
           <form noValidate autoComplete="off">
             <TextField
@@ -113,35 +114,24 @@ function Factors(props) {
               required
               inputRef={v1}
               id="standard-required"
-              label="Enter Value for N"              
+              label="Enter an Integer N"              
             />
-
             </form>
             </Paper>
-
             <span>
-
 
             {resultComplete && 
                 <span>
                     <br />
-                    {result !== null && <Alert severity="success"><strong>{parseInt(v1.current.value).toLocaleString("en-US")}</strong> has <strong>{result.length}</strong> factors</Alert>}
-                    <br />
-                    {result.map(r => {
-                      
-                      if ( isPrime(r)) {
-                        return <Chip avatar={<Avatar color='success'>P</Avatar>} style={{margin: '5px'}} size='small' color='success' variant="outlined" key={r} label={r.toLocaleString("en-US")} />
-                      }
-
-                      return <Chip style={{margin: '5px'}} size='small' color='primary' variant="outlined" key={r} label={r.toLocaleString("en-US")} />
-                    })}
+                    {result !== null && <Alert severity="success">The value <strong>{parseInt(v1.current.value).toLocaleString("en-US")}</strong> is equal to the prime factorization <strong>{result.join(' x ')}</strong></Alert>}
                 </span>}
             <br />
  
         </span>
         </CardContent>
         <CardActions>
-            <Button size="small" onClick={handleSolutionClick}>Find Factors</Button>
+            <Button size="small" onClick={handleSolutionClick}>Factorize</Button>
+            <Button size="small" onClick={handleRandomize}>Randomize Value</Button>
             <Button size="small" onClick={handleResetCalculator}>Reset</Button>
             <Button size="small" onClick={handleOpen}>About Calculator</Button>
             <Modal
@@ -152,10 +142,10 @@ function Factors(props) {
       >
         <Box sx={modalStyle}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Factor Finding Limitations
+            Multiplicitive Inverse Calculator Limitations
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            For performance and memory reasons stick to numbers under 1,000,000. Larger values may work but use at your own risk :)
+            For performance and memory reasons stick to numbers under 10,000.
           </Typography>
         </Box>
       </Modal>            </CardActions>
@@ -164,4 +154,4 @@ function Factors(props) {
     )
 }
 
-export default Factors;
+export default PrimeFactorizationCalculator;

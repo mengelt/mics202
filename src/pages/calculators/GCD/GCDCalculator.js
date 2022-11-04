@@ -111,7 +111,6 @@ function GCDCalculator(props) {
           <form noValidate autoComplete="off">
             <TextField
               m={2}
-              required
               inputRef={v1}
               id="standard-required"
               label="Value 1"              
@@ -119,7 +118,6 @@ function GCDCalculator(props) {
             <br /><br />
             <TextField
               m={2}
-              required
               inputRef={v2}
               id="standard-required"
               label="Value 2"

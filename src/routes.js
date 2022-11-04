@@ -90,6 +90,7 @@ const EulersTotient = async(() => import("./pages/calculators/EulersTotient"));
 const GCD = async(() => import("./pages/calculators/GCD"));
 const Factors = async(() => import("./pages/calculators/Factors"));
 const MultiplicitiveInverse = async(() => import("./pages/calculators/MultiplicitiveInverse"));
+const PrimeFactorization = async(() => import("./pages/calculators/PrimeFactorization"));
 
 // Dashboard components
 const Default = async(() => import("./pages/dashboards/Default"));
@@ -172,6 +173,10 @@ const routes = [
     path: "calculators",
     element: <DashboardLayout />,
     children: [
+      {
+        path: "primefactorization",
+        element: <PrimeFactorization />
+      },
       {
         path: "chinese",
         element: <Chinese />,

@@ -26,6 +26,10 @@ const pagesSection = [
         title: "Find Factors",
       },
       {
+        href: "/calculators/primefactorization",
+        title: "Prime Factorization",
+      },
+      {
         href: "/calculators/chinese",
         title: "CRT",
       },
