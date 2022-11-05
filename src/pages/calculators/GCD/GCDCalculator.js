@@ -22,8 +22,8 @@ import {
   } from "@mui/material";
 import { areCoprime, gcd_two_values } from '../../../utils/mathUtils';
 
-import { spacing } from "@mui/system";
 
+import { spacing } from "@mui/system";
 const MAX_ITERATIONS = 100_000;
 
 const Paper = styled(MuiPaper)(spacing);
@@ -31,6 +31,7 @@ const Paper = styled(MuiPaper)(spacing);
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }
+
 
 const CardContent = styled(MuiCardContent)`
   border-bottom: 1px solid ${(props) => props.theme.palette.grey[300]};
@@ -97,7 +98,7 @@ function GCDCalculator(props) {
       isCoprime = areCoprime(v1.current.value, v2.current.value) === true 
     }
 
-    console.info({result})
+  
 
     return (
         <Card mb={6}>

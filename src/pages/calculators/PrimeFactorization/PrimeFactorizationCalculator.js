@@ -142,10 +142,10 @@ function PrimeFactorizationCalculator(props) {
       >
         <Box sx={modalStyle}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Multiplicitive Inverse Calculator Limitations
+            Prime Factorization Calculator
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            For performance and memory reasons stick to numbers under 10,000.
+            For performance and memory reasons stick to numbers under 1,000,000. Use larger numbers at your own risk!
           </Typography>
         </Box>
       </Modal>            </CardActions>

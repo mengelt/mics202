@@ -12,6 +12,7 @@ import {
   ShoppingCart,
   PieChart,
   Divide,
+  HelpCircle,
   Users,
 } from "react-feather";
 
@@ -49,13 +50,25 @@ const pagesSection = [
   },
 ];
 
+const aboutSection = [
+  {
+    href: "/about",
+    icon: HelpCircle,
+    title: "About this Site"
+  },
+];
+
 
 
 const navItems = [
   {
     title: "Pages",
     pages: pagesSection,
-  }
+  },
+  {
+    title: "Miscellaneous",
+    pages: aboutSection,
+  },  
 ];
 
 export default navItems;
