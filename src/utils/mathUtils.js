@@ -1,3 +1,20 @@
+export const isPositiveInteger = (value) => {
+
+    if ( typeof value === "undefined" ) {
+        return false;
+    }
+    
+    let regex = /^[0-9]*[1-9][0-9]*$/
+    
+    let valid = value.toString().match(regex);
+
+    if ( valid === null ) {
+        return false;
+    }
+
+    return Number.isSafeInteger(+value) && +value >= 0;
+}
+
 export const gcd_two_values = (x, y) => {
 
     x = Math.abs(x);

@@ -21,7 +21,7 @@ import {
     TextField,
     Popover,    
   } from "@mui/material";
-import { areCoprime, findFactors, gcd_two_values, isPrime, primeFactorize } from '../../../utils/mathUtils';
+import { areCoprime, findFactors, gcd_two_values, isPrime, primeFactorize, isPositiveInteger } from '../../../utils/mathUtils';
 
 import { spacing } from "@mui/system";
 
@@ -50,9 +50,9 @@ const modalStyle = {
   };
 
 function Factors(props) {
-
-    const [working, setWorking] = useState(false);
+    
     const [result, setResult] = useState(null);
+    const [inputError, setInputError] = useState(false);
     
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
@@ -60,34 +60,48 @@ function Factors(props) {
 
     const [resultComplete, setResultComplete] = useState(false);
     const v1 = useRef();
-    const v2 = useRef();
+    
+
+    const resetCalculator = () => {
+
+      setResultComplete(false);
+      setResult(null);
+      setInputError(false);
+
+      v1.current.value = null;
+
+    }
 
     const handleRandomize = () => {
 
-        setResultComplete(false);
-        setResult(null);
-
-        v1.current.value = parseInt( Math.random()*1000 );
-        v2.current.value = parseInt( Math.random()*1000 );
-
-        handleSolutionClick();
+      resetCalculator();
+      v1.current.value = parseInt( Math.random()*100000 );
+      handleSolutionClick();
 
     }
 
 
     const handleResetCalculator = () => {
 
-        setResultComplete(false);
-        setResult(null);
-
-        v1.current.value = null;
-        v2.current.value = null;
+      resetCalculator();
+        
     }
 
 
     const handleSolutionClick = () => {
 
-      let factors = findFactors(v1.current.value);
+      let inputValue = isPositiveInteger(v1.current.value);
+      
+      if ( inputValue === false ) {
+        setInputError(true);
+        setResult(null)
+        setResultComplete(true);
+        return;
+      } else {
+        setInputError(false);
+      }
+      
+      let factors = findFactors(+v1.current.value);
 
       setResult(factors)
       setResultComplete(true);
@@ -119,21 +133,27 @@ function Factors(props) {
             </form>
             </Paper>
 
+            <br />
+
             <span>
 
+            
+            {inputError &&
+              <Alert severity="error">What would I do with that?</Alert>
+            }
 
             {resultComplete && 
                 <span>
-                    <br />
+                    
                     {result !== null && <Alert severity="success"><strong>{parseInt(v1.current.value).toLocaleString("en-US")}</strong> has <strong>{result.length}</strong> factors</Alert>}
                     <br />
-                    {result.map(r => {
+                    {result !== null && result.map(r => {
                       
                       if ( isPrime(r)) {
-                        return <Chip avatar={<Avatar color='success'>P</Avatar>} style={{margin: '5px'}} size='small' color='success' variant="outlined" key={r} label={r.toLocaleString("en-US")} />
+                        return <Chip style={{margin: '5px'}} size='small' color='success' variant="filled" key={r} label={r.toLocaleString("en-US")} />
                       }
 
-                      return <Chip style={{margin: '5px'}} size='small' color='primary' variant="outlined" key={r} label={r.toLocaleString("en-US")} />
+                      return <Chip style={{margin: '5px'}} size='small' color='primary' variant="filled" key={r} label={r.toLocaleString("en-US")} />
                     })}
                 </span>}
             <br />
@@ -142,6 +162,7 @@ function Factors(props) {
         </CardContent>
         <CardActions>
             <Button size="small" onClick={handleSolutionClick}>Find Factors</Button>
+            <Button size="small" onClick={handleRandomize}>Randomize N</Button>
             <Button size="small" onClick={handleResetCalculator}>Reset</Button>
             <Button size="small" onClick={handleOpen}>About Calculator</Button>
             <Modal
