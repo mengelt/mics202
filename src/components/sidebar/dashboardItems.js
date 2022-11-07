@@ -12,6 +12,7 @@ import {
   ShoppingCart,
   PieChart,
   Divide,
+  Shuffle,
   HelpCircle,
   Users,
 } from "react-feather";
@@ -48,7 +49,19 @@ const pagesSection = [
       },
     ],
   },
+  {
+    href: "/converters",
+    icon: Shuffle,
+    title: "Converters",
+    children: [
+      {
+        href: "/converters/bases",
+        title: "Bases",
+      }
+    ],
+  },  
 ];
+
 
 const aboutSection = [
   {
@@ -65,6 +78,7 @@ const navItems = [
     title: "Pages",
     pages: pagesSection,
   },
+
   {
     title: "Miscellaneous",
     pages: aboutSection,
