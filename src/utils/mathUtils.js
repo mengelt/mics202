@@ -43,6 +43,16 @@ export const eulersTotient = (value) => {
 
 }
 
+export const coprimeList = (value) => {
+    let results = [];
+    for(let i = 1; i < value; i++) {
+        if ( areCoprime(value, i) ) {
+            results.push(i);
+        }
+    }
+    return results;
+}
+
 export const areCoprime = (value1, value2) => {
     if ( gcd_two_values(value1, value2) === 1 ) {
         return true;

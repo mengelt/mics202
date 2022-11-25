@@ -41,7 +41,7 @@ function PrimeFactorization() {
       <Grid justifyContent="space-between" container spacing={6}>
         <Grid item>
           <Typography variant="h3" gutterBottom>
-            Prime Factorization
+            Prime Factorization of N
           </Typography>
         </Grid>
       </Grid>

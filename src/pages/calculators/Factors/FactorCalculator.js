@@ -5,33 +5,25 @@ import {
     Alert,
     Chip,
     Grid,
-    Avatar,
     Divider as MuiDivider,
     Typography as MuiTypography,
     Card,
     CardContent as MuiCardContent,
-    CardHeader,
     CardActions,
     Button,
     Modal,
     Box,
+    Tooltip,
     Paper as MuiPaper,
     Typography,
-    IconButton,
     TextField,
-    Popover,    
   } from "@mui/material";
-import { areCoprime, findFactors, gcd_two_values, isPrime, primeFactorize, isPositiveInteger } from '../../../utils/mathUtils';
+import { findFactors, isPrime, isPositiveInteger } from '../../../utils/mathUtils';
 
 import { spacing } from "@mui/system";
 
-const MAX_ITERATIONS = 100_000;
-
 const Paper = styled(MuiPaper)(spacing);
 
-function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
-  }
 
 const CardContent = styled(MuiCardContent)`
   border-bottom: 1px solid ${(props) => props.theme.palette.grey[300]};
@@ -59,8 +51,7 @@ function Factors(props) {
     const handleClose = () => setOpen(false);    
 
     const [resultComplete, setResultComplete] = useState(false);
-    const v1 = useRef();
-    
+    const v1 = useRef();    
 
     const resetCalculator = () => {
 
@@ -82,9 +73,13 @@ function Factors(props) {
 
 
     const handleResetCalculator = () => {
-
       resetCalculator();
-        
+    }
+
+    const handleKeyUp = (e) => {
+      if (e.key === 'Enter') {        
+        handleSolutionClick();
+      }
     }
 
 
@@ -119,21 +114,22 @@ function Factors(props) {
               Factoring Calculator
             </Typography>
             <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            A factor is a number that divides into another number and leaves no remainder
+              A factor is a number that divides into another number and leaves no remainder
             </Typography>
 
             <br />
             <Paper mt={3}>
-          <form noValidate autoComplete="off">
-            <TextField
-              m={2}
-              required
-              inputRef={v1}
-              id="standard-required"
-              label="Enter Value for N"              
-            />
+              <form noValidate autoComplete="off" onSubmit={e => { e.preventDefault(); }}>
+              <TextField
+                m={2}
+                required
+                inputRef={v1}
+                id="standard-required"
+                label="Enter Value for N"
+                onKeyUp={handleKeyUp}
+              />
 
-            </form>
+              </form>
             </Paper>
 
             <br />
@@ -142,7 +138,7 @@ function Factors(props) {
 
             
             {inputError &&
-              <Alert severity="error">What would I do with that?</Alert>
+              <Alert severity="error">Missing or invalid input!</Alert>
             }
 
             {resultComplete && 
@@ -153,10 +149,18 @@ function Factors(props) {
                     {result !== null && result.map(r => {
                       
                       if ( isPrime(r)) {
-                        return <Chip style={{margin: '5px'}} size='small' color='success' variant="filled" key={r} label={r.toLocaleString("en-US")} />
+                        return (
+                          <Tooltip title="Prime" placement="top">
+                            <Chip style={{margin: '5px'}} size='small' color='success' variant="filled" key={r} label={r.toLocaleString("en-US")} />
+                          </Tooltip>
+                        )
                       }
 
-                      return <Chip style={{margin: '5px'}} size='small' color='primary' variant="filled" key={r} label={r.toLocaleString("en-US")} />
+                      return (
+                        <Tooltip title="Composite" placement="top">
+                          <Chip style={{margin: '5px'}} size='small' color='primary' variant="filled" key={r} label={r.toLocaleString("en-US")} />
+                          </Tooltip>
+                      )
                     })}
                 </span>}
             <br />
@@ -204,9 +208,6 @@ function Factors(props) {
 
         </Grid>
       
-      {/*
-
-                  */}
 
 
       </Grid>

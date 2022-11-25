@@ -14,13 +14,14 @@ import {
     Button,
     Modal,
     Box,
+    Tooltip,
     Paper as MuiPaper,
     Typography,
     IconButton,
     TextField,
     Popover,    
   } from "@mui/material";
-import { areCoprime, eulersTotient, gcd_two_values, isPrime } from '../../../utils/mathUtils';
+import { areCoprime, coprimeList, eulersTotient, gcd_two_values, isPrime } from '../../../utils/mathUtils';
 
 import { spacing } from "@mui/system";
 
@@ -63,7 +64,7 @@ function EulersTotientCalculator(props) {
 
     const handleRandomize = () => {
 
-        v1.current.value = parseInt( Math.random()*100000 );
+        v1.current.value = parseInt( Math.random()*1000 );
         handleSolutionClick();
 
     }
@@ -78,6 +79,11 @@ function EulersTotientCalculator(props) {
         v2.current.value = null;
     }
 
+    const handleKeyUp = (e) => {
+      if (e.key === 'Enter') {        
+        handleSolutionClick();
+      }
+    }
 
     const handleSolutionClick = () => {
 
@@ -87,7 +93,30 @@ function EulersTotientCalculator(props) {
 
     }
 
+    const renderCoprimeList = (value) => {
+      let coprimes = coprimeList(value);
+      return coprimes.map(n => {
+        if (isPrime(n)) {
+          return (
+          <Tooltip title="Prime" placement="top">
+            <Chip style={{margin: '5px'}} size='small' color='success' variant="filled" key={n} label={n.toLocaleString("en-US")} />  
+          </Tooltip>
+          )
+        }
+        return (
+          <Tooltip title="Composite" placement="top">
+            <Chip style={{margin: '5px'}} size='small' color='primary' variant="filled" key={n} label={n.toLocaleString("en-US")} />
+          </Tooltip>
+        )
+      })
+    }
+
     return (
+
+      <Grid container spacing={6}>
+        <Grid item xs={7}>
+
+
         <Card mb={6}>
           <CardContent>
             
@@ -95,20 +124,21 @@ function EulersTotientCalculator(props) {
               Euler&apos;s Totient Calculator
             </Typography>
             <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            Find how many numbers less an N that are coprime to a N
+            Find how many numbers less an N that are coprime to N
             </Typography>
 
 
 
             <br />
             <Paper mt={3}>
-          <form noValidate autoComplete="off">
+          <form noValidate autoComplete="off" onSubmit={e => { e.preventDefault(); }}>
             <TextField
               m={2}
               required
               inputRef={v1}
               id="standard-required"
-              label="Enter an Integer N"              
+              label="Enter Value for N"
+              onKeyUp={handleKeyUp}
             />
             </form>
             </Paper>
@@ -121,6 +151,10 @@ function EulersTotientCalculator(props) {
                     <br />
                     {result !== null && <Alert severity="success">Φ({v1.current.value}) = <strong>{result}</strong></Alert>}
                 </span>}
+                <br />
+            {resultComplete && renderCoprimeList(v1.current.value)}
+
+
             <br />
  
         </span>
@@ -145,7 +179,28 @@ function EulersTotientCalculator(props) {
           </Typography>
         </Box>
       </Modal>            </CardActions>
-         </Card>
+        </Card>
+
+        </Grid>
+
+        <Grid item xs={5}>
+
+        <Card mb={6}>
+          <CardContent>
+            <Typography variant="h5" component="div">
+              What is it?
+            </Typography>
+
+            <br />
+            <Paper mt={3}>
+              Jeremy / Callie write up here
+            </Paper>
+            </CardContent>
+            </Card>
+
+        </Grid>
+
+      </Grid>
   
     )
 }

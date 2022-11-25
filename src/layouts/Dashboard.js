@@ -82,7 +82,7 @@ const Dashboard = ({ children }) => {
         </Box>
       </Drawer>
       <AppContent>
-        <MainContent p={isLgUp ? 12 : 5}>
+        <MainContent p={8}>
           {children}
           <Outlet />
         </MainContent>

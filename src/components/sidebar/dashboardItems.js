@@ -32,10 +32,6 @@ const pagesSection = [
         title: "Prime Factorization",
       },
       {
-        href: "/calculators/chinese",
-        title: "CRT",
-      },
-      {
         href: "/calculators/eulerstotient",
         title: "Euler's Totient Function",
       },
@@ -46,6 +42,10 @@ const pagesSection = [
       {
         href: "/calculators/gcd",
         title: "GCD",
+      },
+      {
+        href: "/calculators/chinese",
+        title: "CRT",
       },
     ],
   },

@@ -97,16 +97,21 @@ function MICalculator(props) {
       isCoprime = areCoprime(v1.current.value, v2.current.value) === true 
     }
 
-    console.info({result})
+    
 
     return (
+
+      <Grid container spacing={6}>
+        <Grid item xs={7}>
+
+
         <Card mb={6}>
           <CardContent>
             <Typography variant="h5" component="div">
-              Finding a Multiplicitive Inverse
+              Modular Multiplicitive Inverse Calculator
             </Typography>
             <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            If your values are coprime, you can find the multiplicitive inverse
+              If your values are coprime, you can find the multiplicitive inverse
             </Typography>
 
             <div>coming soon to a browser near you</div>
@@ -170,6 +175,32 @@ function MICalculator(props) {
       </Modal>            </CardActions>
          </Card>
   
+         </Grid>
+
+<Grid item xs={5}>
+
+<Card mb={6}>
+  <CardContent>
+    <Typography variant="h5" component="div">
+      What is it?
+    </Typography>
+    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+              How is this useful to cryptography?
+            </Typography>
+
+
+    <br />
+    <Paper mt={3}>
+      Jeremy / Callie write up here
+    </Paper>
+    </CardContent>
+    </Card>
+
+</Grid>
+
+</Grid>
+
+
     )
 }
 

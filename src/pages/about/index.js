@@ -47,7 +47,8 @@ function About() {
             <br />
             <Typography sx={{ mb: 1.5 }} color="text.primary">
             
-              The goal of the project was to create a simple resource with recurring course concepts. The project includes calculators and simple explanations.
+              The goal of the project was to create a resource with explaining recurring course concepts with easy to use calculators. While this site is not exhaustive, it provides a good base of concepts to help the MICS student. While Python+Sage are a far better technology decision for a site like this, JavaScript is used to keep costs as low as possible. 
+              All calculations are run within the browser and do not use any additional bandwidth once the site is loaded.
 
             </Typography>
 

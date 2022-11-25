@@ -66,7 +66,7 @@ function PrimeFactorizationCalculator(props) {
         setResultComplete(false);
         setResult(null);
 
-        v1.current.value = parseInt( Math.random()*1000 );
+        v1.current.value = parseInt( Math.random()*1000000 );
 
         handleSolutionClick();
 
@@ -93,8 +93,18 @@ function PrimeFactorizationCalculator(props) {
 
     }
 
+    const handleKeyUp = (e) => {
+      if (e.key === 'Enter') {        
+        handleSolutionClick();
+      }
+    }
 
     return (
+
+      <Grid container spacing={6}>
+        <Grid item xs={7}>
+
+
         <Card mb={6}>
           <CardContent>
             <Typography variant="h5" component="div">
@@ -108,13 +118,14 @@ function PrimeFactorizationCalculator(props) {
           <br />
             
             <Paper mt={3}>
-          <form noValidate autoComplete="off">
+          <form noValidate autoComplete="off" onSubmit={e => { e.preventDefault(); }}>
             <TextField
               m={2}
               required
               inputRef={v1}
               id="standard-required"
-              label="Enter an Integer N"              
+              label="Enter Value for N"
+              onKeyUp={handleKeyUp}
             />
             </form>
             </Paper>
@@ -131,7 +142,7 @@ function PrimeFactorizationCalculator(props) {
         </CardContent>
         <CardActions>
             <Button size="small" onClick={handleSolutionClick}>Factorize</Button>
-            <Button size="small" onClick={handleRandomize}>Randomize Value</Button>
+            <Button size="small" onClick={handleRandomize}>Randomize N</Button>
             <Button size="small" onClick={handleResetCalculator}>Reset</Button>
             <Button size="small" onClick={handleOpen}>About Calculator</Button>
             <Modal
@@ -150,6 +161,24 @@ function PrimeFactorizationCalculator(props) {
         </Box>
       </Modal>            </CardActions>
          </Card>
+         </Grid>
+        <Grid item xs={5}>
+
+        <Card mb={6}>
+          <CardContent>
+            <Typography variant="h5" component="div">
+              What is it?
+            </Typography>
+
+            <br />
+            <Paper mt={3}>
+              Jeremy / Callie write up here
+            </Paper>
+            </CardContent>
+            </Card>
+
+        </Grid>         
+        </Grid>
   
     )
 }

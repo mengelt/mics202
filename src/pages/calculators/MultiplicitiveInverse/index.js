@@ -41,7 +41,7 @@ function MultiplicitiveInverse() {
       <Grid justifyContent="space-between" container spacing={6}>
         <Grid item>
           <Typography variant="h3" gutterBottom>
-            Multiplicitive Inverse
+            Modular Multiplicitive Inverse
           </Typography>
         </Grid>
       </Grid>
