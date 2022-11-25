@@ -38,10 +38,10 @@ function Factors() {
   return (
     <React.Fragment>
       <Helmet title="Factors" />
-      <Grid justifyContent="space-between" container spacing={6}>
+      <Grid justifyContent="space-between" container spacing={2}>
         <Grid item>
           <Typography variant="h3" gutterBottom>
-            Find Factors
+            Find Factors for N
           </Typography>
         </Grid>
       </Grid>

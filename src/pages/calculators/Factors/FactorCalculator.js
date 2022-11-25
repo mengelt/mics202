@@ -75,7 +75,7 @@ function Factors(props) {
     const handleRandomize = () => {
 
       resetCalculator();
-      v1.current.value = parseInt( Math.random()*100000 );
+      v1.current.value = parseInt( Math.random()*10_000_000 );
       handleSolutionClick();
 
     }
@@ -110,10 +110,13 @@ function Factors(props) {
 
 
     return (
+      <Grid container spacing={6}>
+        <Grid item xs={7}>
+
         <Card mb={6}>
           <CardContent>
             <Typography variant="h5" component="div">
-              Find Factors for N
+              Factoring Calculator
             </Typography>
             <Typography sx={{ mb: 1.5 }} color="text.secondary">
             A factor is a number that divides into another number and leaves no remainder
@@ -173,15 +176,40 @@ function Factors(props) {
       >
         <Box sx={modalStyle}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Factor Finding Limitations
+          Limitations on Finding Factors
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            For performance and memory reasons stick to numbers under 1,000,000. Larger values may work but use at your own risk :)
+            For performance and memory reasons stick to numbers under 10,000,000. Larger values may work but use at your own risk :)
           </Typography>
         </Box>
-      </Modal>            </CardActions>
+      </Modal>
+      </CardActions>
          </Card>
-  
+
+        </Grid>
+        <Grid item xs={5}>
+
+        <Card mb={6}>
+          <CardContent>
+            <Typography variant="h5" component="div">
+              What is it?
+            </Typography>
+
+            <br />
+            <Paper mt={3}>
+              Jeremy / Callie write up here
+            </Paper>
+            </CardContent>
+            </Card>
+
+        </Grid>
+      
+      {/*
+
+                  */}
+
+
+      </Grid>
     )
 }
 
