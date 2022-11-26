@@ -93,7 +93,7 @@ const MultiplicitiveInverse = async(() => import("./pages/calculators/Multiplici
 const PrimeFactorization = async(() => import("./pages/calculators/PrimeFactorization"));
 
 // Converters
-const Bases = async(() => import("./pages/converters/Bases"));
+const Bases = async(() => import("./pages/calculators/Bases"));
 
 // About
 const About = async(() => import("./pages/about"));
@@ -154,21 +154,14 @@ const routes = [
         path: "multiplicitiveinverse",
         element: <MultiplicitiveInverse />,
       },
+      {
+        path: "bases",
+        element: <Bases />,
+      },
       
     ]
   }, 
 
-  {
-    path: "converters",
-    element: <DashboardLayout />,
-    children: [
-      {
-        path: "bases",
-        element: <Bases />
-      }
-
-    ]
-  },
 
   {
     path: "calculators",
@@ -199,7 +192,10 @@ const routes = [
         path: "multiplicitiveinverse",
         element: <MultiplicitiveInverse />,
       },
-
+      {
+        path: "bases",
+        element: <Bases />,
+      },
     ]
   },
   {

@@ -47,19 +47,12 @@ const pagesSection = [
         href: "/calculators/chinese",
         title: "CRT",
       },
-    ],
-  },
-  {
-    href: "/converters",
-    icon: Shuffle,
-    title: "Converters",
-    children: [
       {
-        href: "/converters/bases",
-        title: "Bases",
-      }
+        href: "/calculators/Bases",
+        title: "Numerical Bases",
+      },
     ],
-  },  
+  }
 ];
 
 
@@ -75,7 +68,7 @@ const aboutSection = [
 
 const navItems = [
   {
-    title: "Pages",
+    title: "Tools",
     pages: pagesSection,
   },
 

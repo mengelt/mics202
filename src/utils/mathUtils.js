@@ -60,6 +60,36 @@ export const areCoprime = (value1, value2) => {
     return false;
 }
 
+
+export const convertToBases = (currentBase, value) => {
+
+    function dec2bin(dec) {
+        return (dec >>> 0).toString(2);
+    }
+    
+    let binary;
+    let octal;
+    let hexidecimal;
+
+    if ( currentBase === 10 ) {
+        binary = dec2bin(value);
+        octal = value.toString(8);
+        hexidecimal = value.toString(16);
+        binary = value.toString(2);
+    }
+
+
+    let result = {
+        10: value,
+        8: octal,
+        16: hexidecimal,
+        2: binary
+    }
+    result = {...result, [currentBase]: value}
+    console.info({result})
+    return result;
+}
+
 export const isPrime = value => {
     const boundary = Math.floor(Math.sqrt(value));
     for (let i = 2; i <= boundary; i++) {

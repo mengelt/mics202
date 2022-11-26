@@ -1,3 +1,4 @@
+
 import { useState, useRef } from 'react';
 import styled from "@emotion/styled";
 
@@ -18,7 +19,12 @@ import {
     Typography,
     TextField,
   } from "@mui/material";
-import { findFactors, isPrime, isPositiveInteger } from '../../../utils/mathUtils';
+import { convertToBases, isPrime, isPositiveInteger } from '../../../utils/mathUtils';
+
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 import { spacing } from "@mui/system";
 
@@ -41,7 +47,7 @@ const modalStyle = {
     p: 4,
   };
 
-function Bases(props) {
+function BasesCalculator(props) {
     
     const [result, setResult] = useState(null);
     const [inputError, setInputError] = useState(false);
@@ -51,6 +57,9 @@ function Bases(props) {
     const handleClose = () => setOpen(false);    
 
     const [resultComplete, setResultComplete] = useState(false);
+
+    const [base, setBase] = useState(10);
+
     const v1 = useRef();    
 
     const resetCalculator = () => {
@@ -82,6 +91,11 @@ function Bases(props) {
       }
     }
 
+    
+
+    const handleChange = (e) => {
+      setBase(e.target.value);
+    };
 
     const handleSolutionClick = () => {
 
@@ -96,9 +110,9 @@ function Bases(props) {
         setInputError(false);
       }
       
-      let factors = findFactors(+v1.current.value);
+      let result = convertToBases(base, +v1.current.value);
 
-      setResult(factors)
+      setResult(result)
       setResultComplete(true);
 
     }
@@ -111,16 +125,35 @@ function Bases(props) {
         <Card mb={6}>
           <CardContent>
             <Typography variant="h5" component="div">
-              Factoring Calculator 222
+              Convert Numerical Base
             </Typography>
             <Typography sx={{ mb: 1.5 }} color="text.secondary">
-              A factor is a number that divides into another number and leaves no remainder
+              A number can be represented in different bases
             </Typography>
 
             <br />
             <Paper mt={3}>
               <form noValidate autoComplete="off" onSubmit={e => { e.preventDefault(); }}>
+
+              <FormControl required >
+  <InputLabel id="demo-simple-select-label">Base</InputLabel>
+  <Select
+    labelId="demo-simple-select-label"
+    id="demo-simple-select"
+    value={base}
+    label="Base"
+    onChange={handleChange}
+  >
+    <MenuItem value={2}>Binary</MenuItem>
+    <MenuItem value={8}>Octal</MenuItem>
+    <MenuItem value={10}>Decimal</MenuItem>
+    <MenuItem value={16}>Hexidecimal</MenuItem>
+  </Select>
+</FormControl>
+
+
               <TextField
+                style={{marginLeft: '8px'}}
                 m={2}
                 required
                 inputRef={v1}
@@ -143,35 +176,34 @@ function Bases(props) {
 
             {resultComplete && 
                 <span>
-                    
-                    {result !== null && <Alert severity="success"><strong>{parseInt(v1.current.value).toLocaleString("en-US")}</strong> has <strong>{result.length}</strong> factors</Alert>}
-                    <br />
-                    {result !== null && result.map(r => {
-                      
-                      if ( isPrime(r)) {
-                        return (
-                          <Tooltip title="Prime" placement="top">
-                            <Chip style={{margin: '5px'}} size='small' color='success' variant="filled" key={r} label={r.toLocaleString("en-US")} />
-                          </Tooltip>
-                        )
-                      }
 
-                      return (
-                        <Tooltip title="Composite" placement="top">
-                          <Chip style={{margin: '5px'}} size='small' color='primary' variant="filled" key={r} label={r.toLocaleString("en-US")} />
-                          </Tooltip>
-                      )
-                    })}
+                    <div>
+                        <div style={{display: 'inline-block', width: '200px'}}>Binary (base 2)</div>
+                        <div style={{display: 'inline-block', width: '200px'}}>{result[2]}</div>
+                    </div>
+                    <div>
+                        <div style={{display: 'inline-block', width: '200px'}}>Octal (base 8)</div>
+                        <div style={{display: 'inline-block', width: '200px'}}>{result[8]}</div>
+                    </div>
+                    <div>
+                        <div style={{display: 'inline-block', width: '200px'}}>Decimal (base 10)</div>
+                        <div style={{display: 'inline-block', width: '200px'}}>{result[10]}</div>
+                    </div>
+                    <div>
+                        <div style={{display: 'inline-block', width: '200px'}}>Hexidecimal (base 16)</div>
+                        <div style={{display: 'inline-block', width: '200px'}}>{result[16]}</div>
+                    </div>
+
                 </span>}
             <br />
  
         </span>
         </CardContent>
         <CardActions>
-            <Button size="small" onClick={handleSolutionClick}>Find Factors</Button>
+            <Button size="small" onClick={handleSolutionClick}>Convert</Button>
             <Button size="small" onClick={handleRandomize}>Randomize N</Button>
             <Button size="small" onClick={handleResetCalculator}>Reset</Button>
-            <Button size="small" onClick={handleOpen}>About Calculator</Button>
+            
             <Modal
         open={open}
         onClose={handleClose}
@@ -214,4 +246,4 @@ function Bases(props) {
     )
 }
 
-export default Bases;
+export default BasesCalculator;
