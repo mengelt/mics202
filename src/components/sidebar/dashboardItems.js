@@ -40,6 +40,10 @@ const pagesSection = [
         title: "Multiplicitive Inverse",
       },
       {
+        href: "/calculators/extended",
+        title: "Extended Euclidean",
+      },
+      {
         href: "/calculators/gcd",
         title: "GCD",
       },

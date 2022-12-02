@@ -91,6 +91,7 @@ const GCD = async(() => import("./pages/calculators/GCD"));
 const Factors = async(() => import("./pages/calculators/Factors"));
 const MultiplicitiveInverse = async(() => import("./pages/calculators/MultiplicitiveInverse"));
 const PrimeFactorization = async(() => import("./pages/calculators/PrimeFactorization"));
+const Extended = async(() => import("./pages/calculators/Extended"));
 
 // Converters
 const Bases = async(() => import("./pages/calculators/Bases"));
@@ -143,6 +144,10 @@ const routes = [
         element: <EulersTotient />,
       },
       {
+        path: "extended",
+        element: <Extended />,
+      },
+      {
         path: "chinese",
         element: <Chinese />,
       },
@@ -182,6 +187,10 @@ const routes = [
       {
         path: "eulerstotient",
         element: <EulersTotient />,
+      },
+      {
+        path: "extended",
+        element: <Extended />,
       },
 
       {

@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import styled from "@emotion/styled";
+import Latex from 'react-latex';
 
 import {
     Alert,
@@ -20,10 +21,10 @@ import {
     TextField,
     Popover,    
   } from "@mui/material";
-import { areCoprime, gcd_two_values } from '../../../utils/mathUtils';
+import { areCoprime, gcd_two_values, multiplicitive_inverse } from '../../../utils/mathUtils';
+
 
 import { spacing } from "@mui/system";
-
 const MAX_ITERATIONS = 100_000;
 
 const Paper = styled(MuiPaper)(spacing);
@@ -31,6 +32,7 @@ const Paper = styled(MuiPaper)(spacing);
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }
+
 
 const CardContent = styled(MuiCardContent)`
   border-bottom: 1px solid ${(props) => props.theme.palette.grey[300]};
@@ -86,76 +88,66 @@ function MICalculator(props) {
 
     const handleSolutionClick = () => {
 
-      let gcdResult = gcd_two_values(v1.current.value, v2.current.value)
-      setResult(gcdResult);
+      let isCoprime = areCoprime(v1.current.value, v2.current.value) === true 
+
+      if ( isCoprime ) {
+
+        let inverse = multiplicitive_inverse(v1.current.value, v2.current.value);
+        setResult(inverse);
+
+      } else {
+        setResult(null);
+      }
+      
       setResultComplete(true);
 
     }
 
-    let isCoprime = null;
-    if ( result !== null ) {
-      isCoprime = areCoprime(v1.current.value, v2.current.value) === true 
-    }
 
-    
+  
 
     return (
-
-      <Grid container spacing={6}>
-        <Grid item xs={7}>
-
-
         <Card mb={6}>
           <CardContent>
             <Typography variant="h5" component="div">
-              Modular Multiplicitive Inverse Calculator
-            </Typography>
-            <Typography sx={{ mb: 1.5 }} color="text.secondary">
-              If your values are coprime, you can find the multiplicitive inverse
+              Find a Modular Multiplicitive Inverse
             </Typography>
 
-            <div>coming soon to a browser near you</div>
-
-{/*
             <br />
             <Paper mt={3}>
           <form noValidate autoComplete="off">
             <TextField
               m={2}
-              required
               inputRef={v1}
               id="standard-required"
-              label="Value 1"              
+              label="Enter Value for A"
             />
             <br /><br />
             <TextField
               m={2}
-              required
               inputRef={v2}
               id="standard-required"
-              label="Value 2"
+              label="Enter Modulo"
             />
             </form>
             </Paper>
 
-          */}
             <span>
+
 
             {resultComplete && 
                 <span>
                     <br />
-                    {result === null && <Alert severity="error">No solution exists. Check your inputs and ensure your moduli are coprime!</Alert>}
-                    {result !== null && <Alert severity="success">The greatet common divisor of <strong>{v1.current.value}</strong> and <strong>{v2.current.value}</strong> is <strong>{result}</strong></Alert>}
-                    <br />
-                    {(result !== null && isCoprime) && <Alert severity="success">These values are coprime.</Alert> }
-                    {(result !== null && !isCoprime) && <Alert severity="error">These values are not coprime.</Alert> }
+                    {result === null && <Alert severity="error">No solution exists. Check your inputs and ensure they are coprime!</Alert>}
+                    {result !== null && <Alert severity="success">The modular multiplicitive inverse is <strong>b = {result}</strong>  and satisfies <Latex displayMode={true}>$$ab \equiv1\pmod n$$</Latex></Alert>}
                 </span>}
             <br />
  
         </span>
         </CardContent>
         <CardActions>
-            <Button size="small" onClick={handleSolutionClick}>Find Inverse</Button>
+            <Button size="small" onClick={handleSolutionClick}>Calculate Inverse</Button>
+            <Button size="small" onClick={handleRandomize}>Randomize Values</Button>
             <Button size="small" onClick={handleResetCalculator}>Reset</Button>
             <Button size="small" onClick={handleOpen}>About Calculator</Button>
             <Modal
@@ -166,7 +158,7 @@ function MICalculator(props) {
       >
         <Box sx={modalStyle}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Multiplicitive Inverse Calculator Limitations
+            GCD Calculator Limitations
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             For performance and memory reasons stick to numbers under 10,000.
@@ -175,32 +167,6 @@ function MICalculator(props) {
       </Modal>            </CardActions>
          </Card>
   
-         </Grid>
-
-<Grid item xs={5}>
-
-<Card mb={6}>
-  <CardContent>
-    <Typography variant="h5" component="div">
-      What is it?
-    </Typography>
-    <Typography sx={{ mb: 1.5 }} color="text.secondary">
-              How is this useful to cryptography?
-            </Typography>
-
-
-    <br />
-    <Paper mt={3}>
-      Jeremy / Callie write up here
-    </Paper>
-    </CardContent>
-    </Card>
-
-</Grid>
-
-</Grid>
-
-
     )
 }
 

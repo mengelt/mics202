@@ -1,3 +1,60 @@
+export const multiplicitive_inverse = (a, modulo) => {
+
+    if ( !areCoprime(a, modulo) ) {
+        return null;
+    }
+
+    // ab = 1 mod (modulo)
+
+    let b = 1;
+    let found = false;
+
+    while (!found) {
+
+        if ( (a * b) % modulo === 1 ) {
+            found = true;
+        } else {
+            b++;
+        }
+        
+    }
+    
+    return b;
+
+
+}
+
+// https://www.techiedelight.com/extended-euclidean-algorithm-implementation/
+export const extended_gcd = (a, b) => {
+        
+    if (a === Infinity || a === -Infinity || b === Infinity || b === -Infinity) {
+        return [Infinity, Infinity, Infinity];
+    }
+    let signX = (a < 0) ? -1 : 1,
+        signY = (b < 0) ? -1 : 1,
+        x = 0,
+        y = 1,
+        u = 1,
+        v = 0,
+        q, r, m, n;
+    a = Math.abs(a);
+    b = Math.abs(b);
+    
+    while (a !== 0) {
+        q = Math.floor(b / a);
+        r = b % a;
+        m = x - u * q;
+        n = y - v * q;
+        b = a;
+        a = r;
+        x = u;
+        y = v;
+        u = m;
+        v = n;
+    }
+    return [b, signX * x, signY * y];
+}
+
 export const isPositiveInteger = (value) => {
 
     if ( typeof value === "undefined" ) {
