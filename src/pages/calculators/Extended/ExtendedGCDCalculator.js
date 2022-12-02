@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import styled from "@emotion/styled";
+import Latex from 'react-latex';
 
 import {
     Alert,
@@ -107,7 +108,7 @@ function ExtendedGCDCalculator(props) {
         <Card mb={6}>
           <CardContent>
             <Typography variant="h5" component="div">
-              Exteeeended
+              Extended Euclidean Algorithm Calculator
             </Typography>
 
             <br />
@@ -141,7 +142,7 @@ function ExtendedGCDCalculator(props) {
                     {(result !== null && isCoprime) && <Alert severity="success">These values are coprime.</Alert> }
                     {(result !== null && !isCoprime) && <Alert severity="error">These values are not coprime.</Alert> }
                     <br />
-                    {(result !== null && foundIdentity) && <Alert severity="success">Bezout&apos;s Identity coefficients are x=<strong>{result[1]}</strong>, y=<strong>{result[2]}</strong> and satisfy  &nbsp&nbsp <img alt="egcd" src="/egcd.gif" /></Alert> }
+                    {(result !== null && foundIdentity) && <Alert severity="success">Bezout&apos;s Identity coefficients are x=<strong>{result[1]}</strong>, y=<strong>{result[2]}</strong> and satisfy <Latex displayMode={true}>$$ax+by=gcd(a,b)$$</Latex></Alert> }
                     
                 </span>}
             <br />
@@ -149,8 +150,8 @@ function ExtendedGCDCalculator(props) {
         </span>
         </CardContent>
         <CardActions>
-            <Button size="small" onClick={handleSolutionClick}>Find GCD</Button>
-            <Button size="small" onClick={handleRandomize}>Randomize GCD</Button>
+            <Button size="small" onClick={handleSolutionClick}>Find EGCD</Button>
+            <Button size="small" onClick={handleRandomize}>Randomize EGCD</Button>
             <Button size="small" onClick={handleResetCalculator}>Reset</Button>
             <Button size="small" onClick={handleOpen}>About Calculator</Button>
             <Modal
