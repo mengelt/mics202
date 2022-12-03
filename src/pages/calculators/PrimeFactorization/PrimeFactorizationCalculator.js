@@ -178,6 +178,20 @@ function PrimeFactorizationCalculator(props) {
             </CardContent>
             </Card>
 
+            <br />
+
+            <Card mb={6}>
+          <CardContent>
+            <Typography variant="h5" component="div">
+              Additional Reading
+            </Typography>
+
+            <br />
+            <Paper mt={3}>
+              
+            </Paper>
+            </CardContent>
+            </Card>
         </Grid>         
         </Grid>
   

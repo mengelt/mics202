@@ -105,6 +105,10 @@ function ExtendedGCDCalculator(props) {
   
 
     return (
+
+    <Grid container spacing={6}>
+        <Grid item xs={7}>
+
         <Card mb={6}>
           <CardContent>
             <Typography variant="h5" component="div">
@@ -171,6 +175,42 @@ function ExtendedGCDCalculator(props) {
       </Modal>            </CardActions>
          </Card>
   
+         </Grid>
+
+<Grid item xs={5}>
+
+  <Card mb={6}>
+  <CardContent>
+    <Typography variant="h5" component="div">
+      What is it?
+    </Typography>
+
+    <br />
+    <Paper mt={3}>
+      Jeremy / Callie write up here
+    </Paper>
+    </CardContent>
+    </Card>
+
+    <br />
+
+    <Card mb={6}>
+  <CardContent>
+    <Typography variant="h5" component="div">
+      Additional Reading
+    </Typography>
+
+    <br />
+    <Paper mt={3}>
+      
+    </Paper>
+    </CardContent>
+    </Card>
+
+</Grid>
+
+</Grid>
+
     )
 }
 

@@ -20,6 +20,8 @@ import {
   } from "@mui/material";
 import { findFactors, isPrime, isPositiveInteger } from '../../../utils/mathUtils';
 
+
+
 import { spacing } from "@mui/system";
 
 const Paper = styled(MuiPaper)(spacing);

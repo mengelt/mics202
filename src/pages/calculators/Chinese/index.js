@@ -52,13 +52,6 @@ function Chinese() {
       <Divider my={6} />
 
 
-      <Card mb={6}>
-        <CardHeader title="Modular Arithmetic" />
-        <CardContent>
-        (todo: put stuff from google doc here)
-        </CardContent>
-      </Card>
-
       <CRTNotation />
 
     <br />
