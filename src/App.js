@@ -21,6 +21,8 @@ import { AuthProvider } from "./contexts/JWTContext";
 // import { AuthProvider } from "./contexts/Auth0Context";
 // import { AuthProvider } from "./contexts/CognitoContext";
 
+import { useNavigate } from "react-router-dom";
+
 const clientSideEmotionCache = createEmotionCache();
 
 function App({ emotionCache = clientSideEmotionCache }) {

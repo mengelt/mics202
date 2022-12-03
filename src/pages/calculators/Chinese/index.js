@@ -54,9 +54,9 @@ function Chinese() {
 
       <CRTNotation />
 
-    <br />
+    
 
-    <CRTCalculator />
+    {/* <CRTCalculator /> */}
 
     </React.Fragment>
   );

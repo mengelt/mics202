@@ -18,15 +18,18 @@ import {
     Button,
     Modal,
     Box,
+    Paper as MuiPaper,
     Typography,
     IconButton,
     TextField,
     Popover,    
   } from "@mui/material";
+  import { spacing } from "@mui/system";
   
 const MAX_ITERATIONS = 100_000;
 
 
+const Paper = styled(MuiPaper)(spacing);
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }
@@ -264,13 +267,18 @@ function CRTNotation(props) {
     }
 
     return (
+
+        <Grid container spacing={6}>
+        <Grid item xs={6}>
+
+
         <Card mb={6}>
         <CardContent>
         <Typography variant="h5" component="div">
       Chinese Remainder Theorem Notation
       </Typography>
       <Typography sx={{ mb: 1.5 }} color="text.secondary">
-        put a subtitle here yo
+        &nbsp;
       </Typography>
 <br />
   <span>
@@ -319,6 +327,61 @@ function CRTNotation(props) {
       </Modal>            </CardActions>
          </Card>
   
+         </Grid>
+
+<Grid item xs={6}>
+
+  <Card mb={6}>
+  <CardContent>
+    <Typography variant="h5" component="div">
+      Overview
+    </Typography>
+
+    <br />
+    <Paper mt={3}>
+
+    The Chinese Remainder Theorem (CTR) uses the two building blocks of modular math and greatest common divisors (GCD). CTR gives a unique solution to simultaneous linear congruences with coprime moduli. 
+
+When given an integer M, we want to first find its GCD.
+
+Want to learn more about the GCD? Navigate on the left to learn more about the GCD.
+
+After the GCD is taken, we will begin to cycle through with the modular math of the GCD. 
+
+Want to learn more about Modular Math? Navigate on the left to learn more about modular math
+
+
+    </Paper>
+    </CardContent>
+    </Card>
+
+    <br />
+
+    <Card mb={6}>
+  <CardContent>
+    <Typography variant="h5" component="div">
+      As an Example
+    </Typography>
+
+    <br />
+    <Paper mt={3}>
+    let’s use the number 15 as our value. Then break this down into the two steps of GCD and modular math to perform the CRT.
+
+First: Finding the GCD of our value 15. So the number 15 has the GCD of 3 and 5. 
+
+So, when we evaluate the CRT of numbers in Mod 15, we are actually going to be          evaluating them against mod 3 and mod 5!
+
+To show this, 2 mod 15 would be evaluated as &lt;2 mod 3, 2 mod 5&gt;. Extending this, 7 mod 15 would be evaluated as &lt;7 mod 3, 7 mod 5&gt;, equaling &lt;1 mod 3, 2 mod 5&gt; respectively. And 15 mod 15 would be evaluated as &lt;15 mod 3, 15 mod 5&gt;, equaling &lt;0 mod 3, and 0 mod 5&gt; 
+
+    </Paper>
+    </CardContent>
+    </Card>
+
+</Grid>
+
+</Grid>
+
+
     )
 }
 
