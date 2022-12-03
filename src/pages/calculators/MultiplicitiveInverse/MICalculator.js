@@ -25,6 +25,7 @@ import { areCoprime, gcd_two_values, multiplicitive_inverse } from '../../../uti
 
 
 import { spacing } from "@mui/system";
+import { EXAMPLE_HEADER, OVERVIEW_HEADER } from '../../../constants';
 const MAX_ITERATIONS = 100_000;
 
 const Paper = styled(MuiPaper)(spacing);
@@ -109,7 +110,7 @@ function MICalculator(props) {
     return (
 
       <Grid container spacing={6}>
-        <Grid item xs={7}>
+        <Grid item xs={6}>
 
 
         <Card mb={6}>
@@ -177,17 +178,17 @@ function MICalculator(props) {
   
          </Grid>
 
-<Grid item xs={5}>
+<Grid item xs={6}>
 
   <Card mb={6}>
   <CardContent>
     <Typography variant="h5" component="div">
-      What is it?
+      {OVERVIEW_HEADER}
     </Typography>
 
     <br />
     <Paper mt={3}>
-      Jeremy / Callie write up here
+      multiplicitive inverse writeup 
     </Paper>
     </CardContent>
     </Card>
@@ -197,12 +198,12 @@ function MICalculator(props) {
     <Card mb={6}>
   <CardContent>
     <Typography variant="h5" component="div">
-      Additional Reading
+      {EXAMPLE_HEADER}
     </Typography>
 
     <br />
     <Paper mt={3}>
-      
+      multiplicitive inverse example
     </Paper>
     </CardContent>
     </Card>

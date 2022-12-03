@@ -7,3 +7,6 @@ export const THEMES = {
   GREEN: "GREEN",
   INDIGO: "INDIGO",
 };
+
+export const OVERVIEW_HEADER = 'Overview';
+export const EXAMPLE_HEADER = 'As an Example'

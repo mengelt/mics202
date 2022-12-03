@@ -24,6 +24,7 @@ import { areCoprime, gcd_two_values } from '../../../utils/mathUtils';
 
 
 import { spacing } from "@mui/system";
+import { EXAMPLE_HEADER, OVERVIEW_HEADER } from '../../../constants';
 const MAX_ITERATIONS = 100_000;
 
 const Paper = styled(MuiPaper)(spacing);
@@ -103,7 +104,7 @@ function GCDCalculator(props) {
     return (
 
       <Grid container spacing={6}>
-      <Grid item xs={7}>
+      <Grid item xs={6}>
 
       
         <Card mb={6}>
@@ -171,17 +172,17 @@ function GCDCalculator(props) {
   
   </Grid>
 
-  <Grid item xs={5}>
+  <Grid item xs={6}>
   
     <Card mb={6}>
     <CardContent>
       <Typography variant="h5" component="div">
-        What is it?
+        {OVERVIEW_HEADER}
       </Typography>
   
       <br />
       <Paper mt={3}>
-        Jeremy / Callie write up here
+        gcd writeup
       </Paper>
       </CardContent>
       </Card>
@@ -191,12 +192,12 @@ function GCDCalculator(props) {
       <Card mb={6}>
     <CardContent>
       <Typography variant="h5" component="div">
-        Additional Reading
+        {EXAMPLE_HEADER}
       </Typography>
   
       <br />
       <Paper mt={3}>
-        
+        gcd example
       </Paper>
       </CardContent>
       </Card>

@@ -24,6 +24,7 @@ import {
 import { areCoprime, coprimeList, eulersTotient, gcd_two_values, isPrime } from '../../../utils/mathUtils';
 
 import { spacing } from "@mui/system";
+import { EXAMPLE_HEADER, OVERVIEW_HEADER } from '../../../constants';
 
 const MAX_ITERATIONS = 100_000;
 
@@ -114,7 +115,7 @@ function EulersTotientCalculator(props) {
     return (
 
       <Grid container spacing={6}>
-        <Grid item xs={7}>
+        <Grid item xs={6}>
 
 
         <Card mb={6}>
@@ -183,12 +184,12 @@ function EulersTotientCalculator(props) {
 
         </Grid>
 
-        <Grid item xs={5}>
+        <Grid item xs={6}>
 
         <Card mb={6}>
           <CardContent>
             <Typography variant="h5" component="div">
-              What is it?
+              {OVERVIEW_HEADER}
             </Typography>
 
             <br />
@@ -203,7 +204,7 @@ function EulersTotientCalculator(props) {
             <Card mb={6}>
           <CardContent>
             <Typography variant="h5" component="div">
-              Additional Reading
+              {EXAMPLE_HEADER}
             </Typography>
 
             <br />

@@ -23,6 +23,7 @@ import { findFactors, isPrime, isPositiveInteger } from '../../../utils/mathUtil
 
 
 import { spacing } from "@mui/system";
+import { EXAMPLE_HEADER, OVERVIEW_HEADER } from '../../../constants';
 
 const Paper = styled(MuiPaper)(spacing);
 
@@ -108,7 +109,7 @@ function Factors(props) {
 
     return (
       <Grid container spacing={6}>
-        <Grid item xs={7}>
+        <Grid item xs={6}>
 
         <Card mb={6}>
           <CardContent>
@@ -193,17 +194,17 @@ function Factors(props) {
          </Card>
 
         </Grid>
-        <Grid item xs={5}>
+        <Grid item xs={6}>
 
         <Card mb={6}>
           <CardContent>
             <Typography variant="h5" component="div">
-              What is it?
+              {OVERVIEW_HEADER}
             </Typography>
 
             <br />
             <Paper mt={3}>
-              Jeremy / Callie write up here
+              factor writeup
             </Paper>
             </CardContent>
             </Card>
@@ -214,12 +215,12 @@ function Factors(props) {
 
           <CardContent>
             <Typography variant="h5" component="div">
-              Additional Reading
+              {EXAMPLE_HEADER}
             </Typography>
 
             <br />
             <Paper mt={3}>
-              <a target="_blank" rel="noreferrer noopener" href="https://en.wikipedia.org/wiki/Integer_factorization">Integer Factorization</a> on Wikipedia
+              factor example
             </Paper>
             </CardContent>
             </Card>

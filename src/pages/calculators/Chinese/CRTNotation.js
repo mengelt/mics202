@@ -25,6 +25,7 @@ import {
     Popover,    
   } from "@mui/material";
   import { spacing } from "@mui/system";
+import { EXAMPLE_HEADER, OVERVIEW_HEADER } from '../../../constants';
   
 const MAX_ITERATIONS = 100_000;
 
@@ -334,7 +335,7 @@ function CRTNotation(props) {
   <Card mb={6}>
   <CardContent>
     <Typography variant="h5" component="div">
-      Overview
+      {OVERVIEW_HEADER}
     </Typography>
 
     <br />
@@ -360,7 +361,7 @@ Want to learn more about Modular Math? Navigate on the left to learn more about 
     <Card mb={6}>
   <CardContent>
     <Typography variant="h5" component="div">
-      As an Example
+      {EXAMPLE_HEADER}
     </Typography>
 
     <br />
