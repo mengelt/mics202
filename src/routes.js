@@ -92,6 +92,7 @@ const Factors = async(() => import("./pages/calculators/Factors"));
 const MultiplicitiveInverse = async(() => import("./pages/calculators/MultiplicitiveInverse"));
 const PrimeFactorization = async(() => import("./pages/calculators/PrimeFactorization"));
 const Extended = async(() => import("./pages/calculators/Extended"));
+const SystemOfCongruence = async(() => import("./pages/calculators/Congruence"));
 
 // Converters
 const Bases = async(() => import("./pages/calculators/Bases"));
@@ -152,6 +153,10 @@ const routes = [
         element: <Chinese />,
       },
       {
+        path: "systemofcongruence",
+        element: <SystemOfCongruence />,
+      },
+      {
         path: "GCD",
         element: <GCD />,
       },
@@ -191,6 +196,10 @@ const routes = [
       {
         path: "extended",
         element: <Extended />,
+      },
+      {
+        path: "systemofcongruence",
+        element: <SystemOfCongruence />,
       },
 
       {

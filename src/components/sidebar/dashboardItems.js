@@ -52,6 +52,10 @@ const pagesSection = [
         title: "CRT",
       },
       {
+        href: "/calculators/systemofcongruence",
+        title: "System of Congruence",
+      },
+      {
         href: "/calculators/Bases",
         title: "Numerical Bases",
       },

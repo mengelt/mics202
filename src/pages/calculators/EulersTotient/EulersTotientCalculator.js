@@ -194,7 +194,7 @@ function EulersTotientCalculator(props) {
 
             <br />
             <Paper mt={3}>
-              Jeremy / Callie write up here
+              totient overview
             </Paper>
             </CardContent>
             </Card>
@@ -209,7 +209,7 @@ function EulersTotientCalculator(props) {
 
             <br />
             <Paper mt={3}>
-              
+              totient example
             </Paper>
             </CardContent>
             </Card>
