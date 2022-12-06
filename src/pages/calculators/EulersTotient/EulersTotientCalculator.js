@@ -21,10 +21,10 @@ import {
     TextField,
     Popover,    
   } from "@mui/material";
-import { areCoprime, coprimeList, eulersTotient, gcd_two_values, isPrime } from '../../../utils/mathUtils';
+import { areCoprime, coprimeList, eulersTotient, gcd_two_values, isPositiveInteger, isPrime } from '../../../utils/mathUtils';
 
 import { spacing } from "@mui/system";
-import { EXAMPLE_HEADER, OVERVIEW_HEADER } from '../../../constants';
+import { ADDITIONAL_READING_HEADER, EXAMPLE_HEADER, OVERVIEW_HEADER } from '../../../constants';
 
 const MAX_ITERATIONS = 100_000;
 
@@ -56,6 +56,8 @@ function EulersTotientCalculator(props) {
     const [result, setResult] = useState(null);
     
     const [open, setOpen] = useState(false);
+    const [inputError, setInputError] = useState(false);
+
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);    
 
@@ -75,6 +77,7 @@ function EulersTotientCalculator(props) {
 
         setResultComplete(false);
         setResult(null);
+        setInputError(false);
 
         v1.current.value = null;
         v2.current.value = null;
@@ -87,6 +90,17 @@ function EulersTotientCalculator(props) {
     }
 
     const handleSolutionClick = () => {
+
+      let inputValue = isPositiveInteger(v1.current.value);
+      
+      if ( inputValue === false ) {
+        setInputError(true);
+        setResult(null)
+        setResultComplete(true);
+        return;
+      } else {
+        setInputError(false);
+      }
 
       let resultValue = eulersTotient(v1.current.value);
       setResult(resultValue);
@@ -146,10 +160,15 @@ function EulersTotientCalculator(props) {
 
             <span>
 
+            <br />
+
+            {inputError &&
+              <Alert severity="error">Missing or invalid input!</Alert>
+            }
 
             {resultComplete && 
                 <span>
-                    <br />
+                    
                     {result !== null && <Alert severity="success">Φ({v1.current.value}) = <strong>{result}</strong></Alert>}
                 </span>}
                 <br />
@@ -195,7 +214,7 @@ function EulersTotientCalculator(props) {
             <br />
             <Paper mt={3}>
             Finding Phi is derived from Euler's Totient function. 
-Euler’s totient function is the mathematical multiplicative function that counts the positive integers up to the given integer (N)‘, which is a prime number to N. One may use the function to know the number of prime numbers that exist up to the given integer N.
+Euler’s totient function is the mathematical multiplicative function that counts the positive integers up to the given integer (N), which are coprime number to N.<br /><br />One may use the function to know the number of prime numbers that exist up to the given integer N.
 
             </Paper>
             </CardContent>
@@ -206,12 +225,13 @@ Euler’s totient function is the mathematical multiplicative function that coun
             <Card mb={6}>
           <CardContent>
             <Typography variant="h5" component="div">
-              {EXAMPLE_HEADER}
+              {ADDITIONAL_READING_HEADER}
             </Typography>
 
             <br />
             <Paper mt={3}>
-              totient example
+            <a href="https://en.wikipedia.org/wiki/Euler%27s_totient_function" target="_blank" rel="noopener noreferrer">Euler&apos;s Totient on Wikipedia</a><br />
+            <a href="https://www.geeksforgeeks.org/eulers-totient-function/" target="_blank" rel="noopener noreferrer">Euler&apos;s Totient on GeekForGeeks</a>
             </Paper>
             </CardContent>
             </Card>

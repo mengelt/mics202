@@ -25,7 +25,7 @@ import { areCoprime, gcd_two_values, multiplicitive_inverse } from '../../../uti
 
 
 import { spacing } from "@mui/system";
-import { EXAMPLE_HEADER, OVERVIEW_HEADER } from '../../../constants';
+import { ADDITIONAL_READING_HEADER, EXAMPLE_HEADER, OVERVIEW_HEADER } from '../../../constants';
 const MAX_ITERATIONS = 100_000;
 
 const Paper = styled(MuiPaper)(spacing);
@@ -76,6 +76,11 @@ function MICalculator(props) {
 
     }
 
+    const handleKeyUp = (e) => {
+      if (e.key === 'Enter') {        
+        handleSolutionClick();
+      }
+    }
 
     const handleResetCalculator = () => {
 
@@ -137,7 +142,8 @@ function MICalculator(props) {
               inputRef={v2}
               id="standard-required"
               label="Enter Modulo"
-            />
+              onKeyUp={handleKeyUp}
+              />
             </form>
             </Paper>
 
@@ -158,7 +164,7 @@ function MICalculator(props) {
             <Button size="small" onClick={handleSolutionClick}>Calculate Inverse</Button>
             <Button size="small" onClick={handleRandomize}>Randomize Values</Button>
             <Button size="small" onClick={handleResetCalculator}>Reset</Button>
-            <Button size="small" onClick={handleOpen}>About Calculator</Button>
+            {/*<Button size="small" onClick={handleOpen}>About Calculator</Button>*/}
             <Modal
         open={open}
         onClose={handleClose}
@@ -188,7 +194,14 @@ function MICalculator(props) {
 
     <br />
     <Paper mt={3}>
-      multiplicitive inverse writeup 
+
+        The modular multiplicative inverse of an integer is the product of two numbers such that the value is congruent to 1 when using a modulus n.
+        Another way to think about this is that the modulus value divides evenly into the product of two numbers minus 1.
+        <br />
+        <br />
+        Given an integer and the modulus, this calculator can find the other integer.
+        <br /><br />
+        The modular multiplicitive inverse has uses in public-key cryptography and the RSA algorithm.
     </Paper>
     </CardContent>
     </Card>
@@ -198,12 +211,13 @@ function MICalculator(props) {
     <Card mb={6}>
   <CardContent>
     <Typography variant="h5" component="div">
-      {EXAMPLE_HEADER}
+      {ADDITIONAL_READING_HEADER}
     </Typography>
 
     <br />
     <Paper mt={3}>
-      multiplicitive inverse example
+    <a href="https://en.wikipedia.org/wiki/Modular_multiplicative_inverse" target="_blank" rel="noopener noreferrer">Modular Multiplicitive Inverse on Wikipedia</a><br />
+    
     </Paper>
     </CardContent>
     </Card>

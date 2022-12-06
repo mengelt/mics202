@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import styled from "@emotion/styled";
+import Latex from 'react-latex';
 
 import {
     Alert,
@@ -21,10 +22,10 @@ import {
     Popover,    
   } from "@mui/material";
   
-import { areCoprime, gcd_two_values, primeFactorize } from '../../../utils/mathUtils';
+import { areCoprime, gcd_two_values, isPositiveInteger, primeFactorize } from '../../../utils/mathUtils';
 
 import { spacing } from "@mui/system";
-import { EXAMPLE_HEADER, OVERVIEW_HEADER } from '../../../constants';
+import { ADDITIONAL_READING_HEADER, EXAMPLE_HEADER, OVERVIEW_HEADER } from '../../../constants';
 
 const MAX_ITERATIONS = 100_000;
 
@@ -54,7 +55,8 @@ function PrimeFactorizationCalculator(props) {
 
     const [working, setWorking] = useState(false);
     const [result, setResult] = useState(null);
-    
+    const [inputError, setInputError] = useState(false);
+
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);    
@@ -79,6 +81,7 @@ function PrimeFactorizationCalculator(props) {
 
         setResultComplete(false);
         setResult(null);
+        setInputError(false);
 
         v1.current.value = null;
         
@@ -87,9 +90,20 @@ function PrimeFactorizationCalculator(props) {
 
     const handleSolutionClick = () => {
 
-      console.info(v1.current.value)
+      let inputValue = isPositiveInteger(v1.current.value);
+      
+      if ( inputValue === false ) {
+        setInputError(true);
+        setResult(null)
+        setResultComplete(true);
+        return;
+      } else {
+        setInputError(false);
+      }
+
       let primeFactors = primeFactorize(v1.current.value);
       primeFactors.reverse();
+
       setResult(primeFactors);
       setResultComplete(true);
 
@@ -133,9 +147,14 @@ function PrimeFactorizationCalculator(props) {
             </Paper>
             <span>
 
+            <br />
+
+            {inputError &&
+              <Alert severity="error">Missing or invalid input!</Alert>
+            }
+
             {resultComplete && 
                 <span>
-                    <br />
                     {result !== null && <Alert severity="success">The value <strong>{parseInt(v1.current.value).toLocaleString("en-US")}</strong> is equal to the prime factorization <strong>{result.join(' x ')}</strong></Alert>}
                 </span>}
             <br />
@@ -158,7 +177,7 @@ function PrimeFactorizationCalculator(props) {
             Prime Factorization Calculator
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            For performance and memory reasons stick to numbers under 1,000,000. Use larger numbers at your own risk!
+            To ensure browser stability, stick to numbers under 100,000,000. Use larger numbers at your own risk!
           </Typography>
         </Box>
       </Modal>            </CardActions>
@@ -174,13 +193,15 @@ function PrimeFactorizationCalculator(props) {
 
             <br />
             <Paper mt={3}>
-            Use this prime numbers calculator to find all prime factors of a given integer. There are various methods for the prime factorization of a number. The most common methods that are used for prime factorization are:
-
-Prime factorization by factor tree method
-Prime factorization by division method
-<br />
-<br />
-This calculator uses the division method.
+            Use this prime numbers calculator to find all prime factors of a given integer. There are various methods for the prime factorization of a number.
+            <br /><br />
+            Common methods include:
+              <ul>
+                <li>Factorization using factor trees</li>
+                <li>Factorization using division</li>
+              </ul>
+            <br />
+            This calculator uses the division method.
             </Paper>
             </CardContent>
             </Card>
@@ -195,10 +216,29 @@ This calculator uses the division method.
 
             <br />
             <Paper mt={3}>
-            Prime factorization of 100 is 2 x 2 x 5 x 5 or 22 x 52
+            The number 12,345 can be represented using only prime numbers:
+            <Latex displayMode={true}>$$12,345 = 3 \cdot 5 \cdot 823$$</Latex>
             </Paper>
             </CardContent>
             </Card>
+
+            <br />
+
+            <Card mb={6}>
+
+          <CardContent>
+            <Typography variant="h5" component="div">
+              {ADDITIONAL_READING_HEADER}
+            </Typography>
+
+            <br />
+            <Paper mt={3}>
+              <a href="https://en.wikipedia.org/wiki/Integer_factorization" target="_blank" rel="noopener noreferrer">Integer Factorization on Wikipedia</a>
+            </Paper>
+            </CardContent>
+            </Card>
+
+
         </Grid>         
         </Grid>
   

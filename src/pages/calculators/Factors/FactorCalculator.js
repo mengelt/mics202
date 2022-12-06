@@ -23,7 +23,7 @@ import { findFactors, isPrime, isPositiveInteger } from '../../../utils/mathUtil
 
 
 import { spacing } from "@mui/system";
-import { EXAMPLE_HEADER, OVERVIEW_HEADER } from '../../../constants';
+import { ADDITIONAL_READING_HEADER, EXAMPLE_HEADER, OVERVIEW_HEADER } from '../../../constants';
 
 const Paper = styled(MuiPaper)(spacing);
 
@@ -186,7 +186,7 @@ function Factors(props) {
           Limitations on Finding Factors
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            For performance and memory reasons stick to numbers under 10,000,000. Larger values may work but use at your own risk :)
+            For performance and memory reasons stick to numbers under 1,000,000,000. Larger values may work but use at your own risk :)
           </Typography>
         </Box>
       </Modal>
@@ -224,6 +224,9 @@ function Factors(props) {
             </Paper>
             </CardContent>
             </Card>
+
+            <br />
+
 
         </Grid>
       
