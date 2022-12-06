@@ -165,7 +165,7 @@ function PrimeFactorizationCalculator(props) {
             <Button size="small" onClick={handleSolutionClick}>Factorize</Button>
             <Button size="small" onClick={handleRandomize}>Randomize N</Button>
             <Button size="small" onClick={handleResetCalculator}>Reset</Button>
-            <Button size="small" onClick={handleOpen}>About Calculator</Button>
+            <Button size="small" onClick={handleOpen}>Limitations</Button>
             <Modal
         open={open}
         onClose={handleClose}

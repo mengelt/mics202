@@ -37,7 +37,7 @@ function GCD() {
 
   return (
     <React.Fragment>
-      <Helmet title="CRT Dashboard" />
+      <Helmet title="Greatest Common Divisor" />
       <Grid justifyContent="space-between" container spacing={6}>
         <Grid item>
           <Typography variant="h3" gutterBottom>

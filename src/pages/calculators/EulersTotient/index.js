@@ -36,7 +36,7 @@ function EulersTotient() {
 
   return (
     <React.Fragment>
-      <Helmet title="CRT Dashboard" />
+      <Helmet title="Euler's Totient" />
       <Grid justifyContent="space-between" container spacing={6}>
         <Grid item>
           <Typography variant="h3" gutterBottom>

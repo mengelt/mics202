@@ -86,7 +86,12 @@ function ExtendedGCDCalculator(props) {
         v2.current.value = null;
     }
 
-
+    const handleKeyUp = (e) => {
+      if (e.key === 'Enter') {        
+        handleSolutionClick();
+      }
+    }
+    
     const handleSolutionClick = () => {
 
       let gcdResult = extended_gcd(v1.current.value, v2.current.value)
@@ -131,6 +136,7 @@ function ExtendedGCDCalculator(props) {
               inputRef={v2}
               id="standard-required"
               label="Enter Value for B"
+              onKeyUp={handleKeyUp}
             />
             </form>
             </Paper>

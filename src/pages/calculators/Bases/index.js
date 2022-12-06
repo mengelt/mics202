@@ -36,7 +36,7 @@ function Bases() {
 
   return (
     <React.Fragment>
-      <Helmet title="CRT Dashboard" />
+      <Helmet title="Converting Bases" />
       <Grid justifyContent="space-between" container spacing={6}>
         <Grid item>
           <Typography variant="h3" gutterBottom>
