@@ -174,7 +174,13 @@ function PrimeFactorizationCalculator(props) {
 
             <br />
             <Paper mt={3}>
-              factor write up
+            Use this prime numbers calculator to find all prime factors of a given integer. There are various methods for the prime factorization of a number. The most common methods that are used for prime factorization are:
+
+Prime factorization by factor tree method
+Prime factorization by division method
+<br />
+<br />
+This calculator uses the division method.
             </Paper>
             </CardContent>
             </Card>
@@ -189,7 +195,7 @@ function PrimeFactorizationCalculator(props) {
 
             <br />
             <Paper mt={3}>
-              
+            Prime factorization of 100 is 2 x 2 x 5 x 5 or 22 x 52
             </Paper>
             </CardContent>
             </Card>

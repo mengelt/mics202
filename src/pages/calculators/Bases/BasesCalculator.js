@@ -233,7 +233,19 @@ function BasesCalculator(props) {
 
             <br />
             <Paper mt={3}>
-              Jeremy / Callie write up here
+            By "base" we mean how many numbers in a number system:
+            <br />
+            <br />
+The decimal number system has 10 digits (0 - 9) and so it is Base 10
+<br />
+<br />
+A binary digit can only be 0 or 1, so is Base 2
+<br />
+<br />
+A hexadecimal digit can be (0 to 9  |  A to F), so is Base 16
+<br />
+<br />
+Octal refers to the base-8 numbering system (0-7)
             </Paper>
             </CardContent>
             </Card>

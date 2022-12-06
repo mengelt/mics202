@@ -188,7 +188,10 @@ function ExtendedGCDCalculator(props) {
 
     <br />
     <Paper mt={3}>
-      extended writeup
+    The extended Euclidean algorithm is an algorithm to compute integers x and y: 
+  ax + by = gcd(a,b) 
+  <br />
+
     </Paper>
     </CardContent>
     </Card>
@@ -203,7 +206,33 @@ function ExtendedGCDCalculator(props) {
 
     <br />
     <Paper mt={3}>
-      extended example
+    We start with our GCD. We rewrite it in terms of the previous two terms:
+2 = 26 - 2 * 12 
+
+<br />
+<br />
+We replace for 12 by taking our previous line (38 = 1 * 26 + 12) and writing it in terms of 12:
+
+2 = 26 - 2 * (38 - 1  * 26).
+<br />
+<br />
+Collect like terms, the 26's, and we have
+
+2 = 3 * 26 - 2 * 38.
+<br />
+<br />
+Repeat the process:
+
+2 = 3 * (102 - 2 * 38) - 2 * 38.
+
+<br />
+<br />
+The final result is our answer:
+
+2 = 3 * 102 - 8 * 38.
+<br />
+<br />
+Thus x and y are 3 and -8.
     </Paper>
     </CardContent>
     </Card>
