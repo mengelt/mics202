@@ -182,7 +182,10 @@ function GCDCalculator(props) {
   
       <br />
       <Paper mt={3}>
-        gcd writeup
+      Overview: Given the number M, the Greatest Common Divisors is about hunting for the largest integers that divide the value M.
+
+
+
       </Paper>
       </CardContent>
       </Card>
@@ -197,7 +200,8 @@ function GCDCalculator(props) {
   
       <br />
       <Paper mt={3}>
-        gcd example
+      M = 15. 15 is not a prime number. The greatest common dividers that equal 15 are divided into 3 * 5. Meaning that 3 and 5 divide 15 evenly and multiplied together equal 15. 
+We are able to find GCD by listing the positive factors of the number and finding the prime number multiplication equaling the original number.
       </Paper>
       </CardContent>
       </Card>

@@ -204,7 +204,7 @@ function Factors(props) {
 
             <br />
             <Paper mt={3}>
-              factor writeup
+              factor writeup apple
             </Paper>
             </CardContent>
             </Card>
