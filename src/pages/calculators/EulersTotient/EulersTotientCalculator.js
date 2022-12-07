@@ -213,7 +213,7 @@ function EulersTotientCalculator(props) {
               {OVERVIEW_HEADER}
             </Typography>
 
-            <br />
+            
             <Paper mt={3}>
             Finding Phi is derived from Euler's Totient function. 
 Euler’s totient function is the mathematical multiplicative function that counts the positive integers up to the given integer (N), which are coprime number to N.<br /><br />One may use the function to know the number of prime numbers that exist up to the given integer N.
@@ -230,7 +230,7 @@ Euler’s totient function is the mathematical multiplicative function that coun
               {ADDITIONAL_READING_HEADER}
             </Typography>
 
-            <br />
+            
             <Paper mt={3}>
             <a href="https://en.wikipedia.org/wiki/Euler%27s_totient_function" target="_blank" rel="noopener noreferrer">Euler&apos;s Totient on Wikipedia</a><br />
             <a href="https://www.geeksforgeeks.org/eulers-totient-function/" target="_blank" rel="noopener noreferrer">Euler&apos;s Totient on GeekForGeeks</a>

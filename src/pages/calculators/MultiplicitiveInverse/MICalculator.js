@@ -216,7 +216,6 @@ function MICalculator(props) {
       {OVERVIEW_HEADER}
     </Typography>
 
-    <br />
     <Paper mt={3}>
 
         The modular multiplicative inverse of an integer is the product of two numbers such that the value is congruent to 1 when using a modulus n.
@@ -252,7 +251,7 @@ Step 2. The modular inverse of A mod C is the B value that makes A * B mod C = 5
       {ADDITIONAL_READING_HEADER}
     </Typography>
 
-    <br />
+
     <Paper mt={3}>
     <a href="https://en.wikipedia.org/wiki/Modular_multiplicative_inverse" target="_blank" rel="noopener noreferrer">Modular Multiplicitive Inverse on Wikipedia</a><br />
     

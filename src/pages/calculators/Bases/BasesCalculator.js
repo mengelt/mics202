@@ -110,7 +110,7 @@ function BasesCalculator(props) {
         setInputError(false);
       }
       
-      let result = convertToBases(base, +v1.current.value);
+      let result = convertToBases(10, +v1.current.value);
 
       setResult(result)
       setResultComplete(true);
@@ -135,7 +135,9 @@ function BasesCalculator(props) {
             <Paper mt={3}>
               <form noValidate autoComplete="off" onSubmit={e => { e.preventDefault(); }}>
 
+{/*
               <FormControl required >
+                
   <InputLabel id="demo-simple-select-label">Base</InputLabel>
   <Select
     labelId="demo-simple-select-label"
@@ -150,15 +152,17 @@ function BasesCalculator(props) {
     <MenuItem value={16}>Hexidecimal</MenuItem>
   </Select>
 </FormControl>
+    */}
 
 
               <TextField
                 style={{marginLeft: '8px'}}
                 m={2}
                 required
+                InputLabelProps={{shrink: true}}
                 inputRef={v1}
                 id="standard-required"
-                label="Enter Value for N"
+                label="Enter Decimal Value"
                 onKeyUp={handleKeyUp}
               />
 
@@ -228,10 +232,10 @@ function BasesCalculator(props) {
         <Card mb={6}>
           <CardContent>
             <Typography variant="h5" component="div">
-              What is it?
+              What are numerical bases?
             </Typography>
 
-            <br />
+            
             <Paper mt={3}>
             By "base" we mean how many numbers in a number system:
             <br />

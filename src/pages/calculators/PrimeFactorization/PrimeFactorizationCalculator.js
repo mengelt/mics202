@@ -222,8 +222,7 @@ function PrimeFactorizationCalculator(props) {
             <Typography variant="h5" component="div">
               {OVERVIEW_HEADER}
             </Typography>
-
-            <br />
+            
             <Paper mt={3}>
             Use this prime numbers calculator to find all prime factors of a given integer. There are various methods for the prime factorization of a number.
             <br /><br />
@@ -246,7 +245,7 @@ function PrimeFactorizationCalculator(props) {
               {EXAMPLE_HEADER}
             </Typography>
 
-            <br />
+            
             <Paper mt={3}>
             The number 12,345 can be represented using only prime numbers:
             <Latex displayMode={true}>$$12,345 = 3 \cdot 5 \cdot 823$$</Latex>
@@ -263,7 +262,7 @@ function PrimeFactorizationCalculator(props) {
               {ADDITIONAL_READING_HEADER}
             </Typography>
 
-            <br />
+            
             <Paper mt={3}>
               <a href="https://en.wikipedia.org/wiki/Integer_factorization" target="_blank" rel="noopener noreferrer">Integer Factorization on Wikipedia</a>
             </Paper>

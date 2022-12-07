@@ -40,7 +40,7 @@ function Bases() {
       <Grid justifyContent="space-between" container spacing={6}>
         <Grid item>
           <Typography variant="h3" gutterBottom>
-            Convert Between Bases
+            Convert Numerical Base
           </Typography>
         </Grid>
       </Grid>

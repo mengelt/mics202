@@ -204,30 +204,38 @@ function Factors(props) {
               {OVERVIEW_HEADER}
             </Typography>
 
-            <br />
+            
             <Paper mt={3}>
-              factor writeup apple
+              Factoring numbers is an important concept in cryptography. Cryptographic protocols, such as RSA, rely on the fact
+              that factoring very large numbers, specifically semiprimes, is very hard to do.
+              <br /><br />
+              This calculator can quickly find factors up to around a billion and will identify which of those that are prime.
+            
             </Paper>
             </CardContent>
-            </Card>
+        </Card>
 
-            <br />
+        <br />
 
-            <Card mb={6}>
-
+        <Card mb={6}>
           <CardContent>
             <Typography variant="h5" component="div">
-              {EXAMPLE_HEADER}
+              {ADDITIONAL_READING_HEADER}
+            </Typography>
+            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+              Links open in a new tab
             </Typography>
 
-            <br />
             <Paper mt={3}>
-              factor example
+              <a href="https://en.wikipedia.org/wiki/Integer_factorization" target="_blank" rel="noopener noreferrer">Integer Factorization</a> on Wikipedia<br />
+              <a href="https://mathworld.wolfram.com/Semiprime.html" target="_blank" rel="noopener noreferrer">Semiprimes</a> on Wolfram Alpha<br />
+              <a href="https://www.geeksforgeeks.org/rsa-algorithm-cryptography/" target="_blank" rel="noopener noreferrer">RSA Algorithm</a> on GeeksForGeeks<br />
+              
             </Paper>
             </CardContent>
-            </Card>
+        </Card>
 
-            <br />
+        <br />
 
 
         </Grid>

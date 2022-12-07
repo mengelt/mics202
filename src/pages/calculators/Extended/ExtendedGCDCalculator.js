@@ -133,7 +133,7 @@ function ExtendedGCDCalculator(props) {
               Extended Euclidean Algorithm Calculator
             </Typography>
             <Typography sx={{ mb: 1.5 }} color="text.secondary">
-              Determine the Greated Common Divisor for two integer and Bezout&apos; Identity coefficients   
+              Determine the Greated Common Divisor for two integer and Bezout&apos;s Identity coefficients   
             </Typography>
             <br />
             <Paper mt={3}>
@@ -210,7 +210,7 @@ function ExtendedGCDCalculator(props) {
       {OVERVIEW_HEADER}
     </Typography>
 
-    <br />
+
     <Paper mt={3}>
     The extended Euclidean algorithm is an algorithm to compute integers x and y: 
   ax + by = gcd(a,b) 
@@ -228,7 +228,7 @@ function ExtendedGCDCalculator(props) {
       {EXAMPLE_HEADER}
     </Typography>
 
-    <br />
+    
     <Paper mt={3}>
     We start with our GCD. We rewrite it in terms of the previous two terms:
 2 = 26 - 2 * 12 

@@ -9,18 +9,21 @@ export const quadratic_residue = (a, p) => {
     }
 
     let idx = 1
-    
+    let found = []
     while (idx < p) {
 
         if ( ( Math.pow(idx,2) % p === +a )) {
-            return idx
-        } else {
-            idx++;
+            found.push(-idx)
+            found.push(idx)
         }
+
+        idx++;
 
     }
 
-    return [-idx, idx];
+    found.sort((a, b) => a - b)
+
+    return found;
 
 }
 

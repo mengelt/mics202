@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import styled from "@emotion/styled";
 
-import { findFactors, isComposite, isPrime, primeFactorize } from '../../../utils/mathUtils';
+import { findFactors, isComposite, isPositiveInteger, isPrime, primeFactorize } from '../../../utils/mathUtils';
 
 import "./crt.css";
 
@@ -55,6 +55,7 @@ function CRTNotation(props) {
 
     const [working, setWorking] = useState(false);
     const [result, setResult] = useState(null);
+    const [inputError, setInputError] = useState(false);
     
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
@@ -63,10 +64,6 @@ function CRTNotation(props) {
     const [resultComplete, setResultComplete] = useState(false);
     const v1 = useRef();
     const m1 = useRef();
-    const v2 = useRef();
-    const m2 = useRef();
-    const v3 = useRef();
-    const m3 = useRef();
 
     const solve = (inputs) => {
         let i = 0;
@@ -93,54 +90,45 @@ function CRTNotation(props) {
         m1.current.value = tv1;
         v1.current.value = tm1;
 
-
-        let tv2 = getRandomInt(5)+5
-        let tm2 = tv2 - getRandomInt(3) - 1;
-        m2.current.value = tv2;
-        v2.current.value = tm2;
-
-        let tv3 = getRandomInt(5)+5
-        let tm3 = tv3 - getRandomInt(3) - 1;
-        m3.current.value = tv3;
-        v3.current.value = tm3;
-
+        handleNotateIt()
         
 
     }
 
 
     const handleResetCalculator = () => {
-
+        
         setResultComplete(false);
         setResult(null);
+        setInputError(false);
 
-        v1.current.value = '1';
-        v2.current.value = '4';
-        v3.current.value = '6';
-        m1.current.value = '3';
-        m2.current.value = '5';
-        m3.current.value = '7';
+        v1.current.value = null;
+        m1.current.value = null;
     }
 
 
     const handleNotateIt = () => {
 
+        let inputValue1 = isPositiveInteger(v1.current.value);
+        let inputValue2 = isPositiveInteger(m1.current.value);
+
+        if ( inputValue1 === false || inputValue2 === false ) {
+            setInputError(true);
+            setResult(null)
+            setResultComplete(false);
+            return;
+          } else {
+    
+
         // determine if modulus is prime
         let currentValue = m1.current.value;
         let notation = [];
-        let notationLabel = '?'
 
         const isPrimeValue = isPrime(currentValue);
 
-        console.info({isPrimeValue});
-
         let allFactors = findFactors(currentValue);
 
-        console.info({allFactors});
-
         const isCompositeValue = isComposite(currentValue);
-
-        console.info({isCompositeValue})
 
         let primies = [];
         if ( isCompositeValue ) {
@@ -258,14 +246,10 @@ function CRTNotation(props) {
         
         // does it have 2 prime factors?
         // is it a composite with multiple factors?
-
+        }
     }
 
-    const renderResult = notation => {
-        
 
-        return notation
-    }
 
     return (
 
@@ -287,10 +271,18 @@ function CRTNotation(props) {
             
     
             <div>
-                <TextField inputProps={{min: 0, style: { textAlign: 'center' }}} style={{width: 40}} inputRef={v1} defaultValue={6} variant="standard" /> mod 
+
+                <TextField
+                    inputProps={{min: 0, style: { textAlign: 'center' }}}
+                    style={{width: 40}}
+                    inputRef={v1} defaultValue={6} variant="standard" /> mod 
                 <TextField inputProps={{min: 0, style: { textAlign: 'center' }}} style={{width: 40}} defaultValue={15} inputRef={m1} variant="standard" />
             </div>
 
+            <br />
+            {inputError &&
+              <Alert severity="error">Missing or invalid input!</Alert>
+            }
 
 
 
@@ -298,7 +290,7 @@ function CRTNotation(props) {
                 <span>
                     <br />                    
                     {result === "?" && <Alert severity="error">Hmm. Something went wrong... back to the drawing board!</Alert>}
-                    {result !== null && <Alert severity="success">This can be expressed as <strong>&lt; {renderResult(result)} &gt;</strong></Alert>}
+                    {result !== null && <Alert severity="success">This can be expressed as <strong>&lt; {result} &gt;</strong></Alert>}
                 </span>}
             <br />
  
@@ -306,9 +298,9 @@ function CRTNotation(props) {
         </CardContent>
         <CardActions>
             <Button size="small" onClick={handleNotateIt}>Notate It</Button>
-            {/*
-            <Button size="small" onClick={() => {}}>Randomize Value</Button>
             <Button size="small" onClick={handleResetCalculator}>Reset</Button>
+            <Button size="small" onClick={handleRandomize}>Randomize Value</Button>
+            {/*
             <Button size="small" onClick={handleOpen}>About Calculator</Button>
             */}
             <Modal
@@ -338,7 +330,6 @@ function CRTNotation(props) {
       {OVERVIEW_HEADER}
     </Typography>
 
-    <br />
     <Paper mt={3}>
 
     The Chinese Remainder Theorem (CTR) uses the two building blocks of modular math and greatest common divisors (GCD).
@@ -363,7 +354,7 @@ function CRTNotation(props) {
       {EXAMPLE_HEADER}
     </Typography>
 
-    <br />
+
     <Paper mt={3}>
     Let’s use the number 15 as our value. 
     

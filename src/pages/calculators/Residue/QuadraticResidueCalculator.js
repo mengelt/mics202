@@ -69,6 +69,7 @@ function QuadraticResidueCalculator(props) {
 
         setResultComplete(false);
         setResult(null);
+        setInputError(null);   
 
         v1.current.value = parseInt( Math.random()*1000 );
         v2.current.value = parseInt( Math.random()*1000 );
@@ -176,8 +177,8 @@ function QuadraticResidueCalculator(props) {
             {resultComplete === true && 
                 <span>
                     <br />
-                    {result === null && <Alert severity="error">No solution exists. Check your inputs and ensure they are coprime!</Alert>}
-                    {result !== null && <Alert severity="success">The modular square roots are <strong>∈ = {result.join(',')}</strong>  and satisfies <Latex displayMode={true}>$$ r² \equiv a\pmod p$$</Latex></Alert>}
+                    {(result === null || result.length === 0) && <Alert severity="error">No solution exists. Check your inputs and ensure they are coprime!</Alert>}
+                    {(result !== null && result.length > 0) && <Alert severity="success">The modular square roots are <strong>∈ = {result.join(',')}</strong>  and satisfies <Latex displayMode={true}>$$ r² \equiv a\pmod p$$</Latex></Alert>}
                 </span>}
             <br />
  
@@ -215,7 +216,7 @@ function QuadraticResidueCalculator(props) {
       {OVERVIEW_HEADER}
     </Typography>
 
-    <br />
+
     <Paper mt={3}>
 
     A modular square root of an integer modulo another integer greater than 1 is a value such that: r^2 ≡ a ( mod m ).
@@ -232,7 +233,6 @@ function QuadraticResidueCalculator(props) {
       {ADDITIONAL_READING_HEADER}
     </Typography>
 
-    <br />
     <Paper mt={3}>
     <a href="https://en.wikipedia.org/wiki/Quadratic_residue" target="_blank" rel="noopener noreferrer">Quadratic Residues on Wikipedia</a><br />
     
