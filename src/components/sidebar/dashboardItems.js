@@ -36,6 +36,10 @@ const pagesSection = [
         title: "Euler's Totient Function",
       },
       {
+        href: "/calculators/residue",
+        title: "Modular Square Root",
+      },
+      {
         href: "/calculators/multiplicitiveinverse",
         title: "Multiplicitive Inverse",
       },

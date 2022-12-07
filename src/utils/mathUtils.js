@@ -1,3 +1,46 @@
+export const quadratic_residue = (a, p) => {
+
+    // https://medium.com/coinmonks/integer-factorization-defining-the-limits-of-rsa-cracking-71fc0675bc0e
+    // https://www.rieselprime.de/ziki/Modular_square_root
+    // r²=a(mod p)
+
+    if ( !areCoprime(a, p) ) {
+        return null;
+    }
+
+    // 111, 113
+
+    let ok = true;
+    let idx = 1
+    while (ok) {
+
+        console.info({e: ( Math.pow(idx,2) % p === a )})
+        
+        if ( ( Math.pow(idx,2) % p === a )) {
+          //  console.info('found ', idx)
+            return idx
+        }
+
+        if ( idx > 1000 ) {
+            console.warn('quitting!')
+            ok = false;
+        } else {
+            idx++;
+        }
+
+    }
+
+    if ( ok === false )  {
+        return null
+    }
+
+    return idx;
+    
+
+    // find a value of x
+
+}
+
 export const multiplicitive_inverse = (a, modulo) => {
 
     if ( !areCoprime(a, modulo) ) {

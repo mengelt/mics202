@@ -87,6 +87,7 @@ import ProtectedPage from "./pages/protected/ProtectedPage";
 // Calculators
 const Chinese = async(() => import("./pages/calculators/Chinese"));
 const EulersTotient = async(() => import("./pages/calculators/EulersTotient"));
+const QuadraticResidue = async(() => import("./pages/calculators/Residue"));
 const GCD = async(() => import("./pages/calculators/GCD"));
 const Factors = async(() => import("./pages/calculators/Factors"));
 const MultiplicitiveInverse = async(() => import("./pages/calculators/MultiplicitiveInverse"));
@@ -188,6 +189,10 @@ const routes = [
       {
         path: "GCD",
         element: <GCD />,
+      },
+      {
+        path: "residue",
+        element: <QuadraticResidue />,
       },
       {
         path: "eulerstotient",
