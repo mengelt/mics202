@@ -16,18 +16,17 @@ import {
     Modal,
     Box,
     Paper as MuiPaper,
+    Tooltip,
     Typography,
     IconButton,
     TextField,
     Popover,    
   } from "@mui/material";
   
-import { areCoprime, gcd_two_values, isPositiveInteger, primeFactorize } from '../../../utils/mathUtils';
+import { areCoprime, findFactors, gcd_two_values, isPositiveInteger, isPrime, primeFactorize } from '../../../utils/mathUtils';
 
 import { spacing } from "@mui/system";
 import { ADDITIONAL_READING_HEADER, EXAMPLE_HEADER, OVERVIEW_HEADER } from '../../../constants';
-
-const MAX_ITERATIONS = 100_000;
 
 const Paper = styled(MuiPaper)(spacing);
 
@@ -56,6 +55,7 @@ function PrimeFactorizationCalculator(props) {
     const [working, setWorking] = useState(false);
     const [result, setResult] = useState(null);
     const [inputError, setInputError] = useState(false);
+    const [allFactors, setAllFactors] = useState([]);
 
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
@@ -69,7 +69,7 @@ function PrimeFactorizationCalculator(props) {
 
         setResultComplete(false);
         setResult(null);
-
+        
         v1.current.value = parseInt( Math.random()*1000000 );
 
         handleSolutionClick();
@@ -82,7 +82,7 @@ function PrimeFactorizationCalculator(props) {
         setResultComplete(false);
         setResult(null);
         setInputError(false);
-
+        setAllFactors([]);
         v1.current.value = null;
         
     }
@@ -101,9 +101,11 @@ function PrimeFactorizationCalculator(props) {
         setInputError(false);
       }
 
+      let factors = findFactors(+v1.current.value);
       let primeFactors = primeFactorize(v1.current.value);
       primeFactors.reverse();
 
+      setAllFactors(factors);
       setResult(primeFactors);
       setResultComplete(true);
 
@@ -137,7 +139,9 @@ function PrimeFactorizationCalculator(props) {
           <form noValidate autoComplete="off" onSubmit={e => { e.preventDefault(); }}>
             <TextField
               m={2}
+              error={inputError === true}
               required
+              InputLabelProps={{ shrink: true }}
               inputRef={v1}
               id="standard-required"
               label="Enter Value for N"
@@ -154,9 +158,37 @@ function PrimeFactorizationCalculator(props) {
             }
 
             {resultComplete && 
-                <span>
-                    {result !== null && <Alert severity="success">The value <strong>{parseInt(v1.current.value).toLocaleString("en-US")}</strong> is equal to the prime factorization <strong>{result.join(' x ')}</strong></Alert>}
-                </span>}
+                <>
+                    {result !== null && <Alert severity="success">The value <strong>{parseInt(v1.current.value).toLocaleString("en-US")}</strong> can be represented with primes as <strong>{result.join(' x ')}</strong></Alert>}
+                
+                    <br />
+                    
+                    {allFactors.length !== 0 && <Typography sx={{ mb: 1.5 }} color="text.secondary">&nbsp;&nbsp;All Factors ({allFactors.length}):<br /></Typography>}
+                    {allFactors.length !== 0 && allFactors.map(r => {
+                      
+                      if ( isPrime(r)) {
+                        return (
+                          <Tooltip title="Prime" placement="top" key={r}>
+                            <Chip style={{margin: '5px'}} size='small' color='success' variant="filled" key={r} label={r.toLocaleString("en-US")} />
+                          </Tooltip>
+                        )
+                      }
+
+                      
+                      return (
+                        <Tooltip title="Composite" placement="top" key={r}>
+                          <Chip style={{margin: '5px'}} size='small' color='primary' variant="filled" label={r.toLocaleString("en-US")} />
+                        </Tooltip>
+                      )
+                    })}
+                </>
+
+              }
+
+
+
+
+
             <br />
  
         </span>

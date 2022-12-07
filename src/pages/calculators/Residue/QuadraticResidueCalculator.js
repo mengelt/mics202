@@ -157,7 +157,7 @@ function QuadraticResidueCalculator(props) {
                 <span>
                     <br />
                     {result === null && <Alert severity="error">No solution exists. Check your inputs and ensure they are coprime!</Alert>}
-                    {result !== null && <Alert severity="success">The modular square roots are <strong>r = {result}</strong>  and satisfies <Latex displayMode={true}>$$ r² \equiv a\pmod p$$</Latex></Alert>}
+                    {result !== null && <Alert severity="success">The modular square roots are <strong>∈ = {result.join(',')}</strong>  and satisfies <Latex displayMode={true}>$$ r² \equiv a\pmod p$$</Latex></Alert>}
                 </span>}
             <br />
  
@@ -169,11 +169,11 @@ function QuadraticResidueCalculator(props) {
             <Button size="small" onClick={handleResetCalculator}>Reset</Button>
             {/*<Button size="small" onClick={handleOpen}>About Calculator</Button>*/}
             <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
         <Box sx={modalStyle}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             GCD Calculator Limitations

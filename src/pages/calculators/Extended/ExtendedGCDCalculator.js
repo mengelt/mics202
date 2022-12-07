@@ -21,7 +21,7 @@ import {
     TextField,
     Popover,    
   } from "@mui/material";
-import { areCoprime, extended_gcd, gcd_two_values } from '../../../utils/mathUtils';
+import { areCoprime, extended_gcd, gcd_two_values, isPositiveInteger } from '../../../utils/mathUtils';
 
 
 import { spacing } from "@mui/system";
@@ -55,7 +55,8 @@ function ExtendedGCDCalculator(props) {
 
     const [working, setWorking] = useState(false);
     const [result, setResult] = useState(null);
-    
+    const [inputError, setInputError] = useState(false);
+
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);    
@@ -81,6 +82,7 @@ function ExtendedGCDCalculator(props) {
 
         setResultComplete(false);
         setResult(null);
+        setInputError(null);
 
         v1.current.value = null;
         v2.current.value = null;
@@ -93,6 +95,18 @@ function ExtendedGCDCalculator(props) {
     }
     
     const handleSolutionClick = () => {
+
+      let inputValue1 = isPositiveInteger(v1.current.value);
+      let inputValue2 = isPositiveInteger(v2.current.value);
+
+      if ( inputValue1 === false || inputValue2 === false ) {
+        setInputError(true);
+        setResult(null)
+        setResultComplete(true);
+        return;
+      } else {
+        setInputError(false);
+      }      
 
       let gcdResult = extended_gcd(v1.current.value, v2.current.value)
       
@@ -107,8 +121,6 @@ function ExtendedGCDCalculator(props) {
     if ( result !== null ) {
       isCoprime = areCoprime(v1.current.value, v2.current.value) === true 
     }
-
-  
 
     return (
 

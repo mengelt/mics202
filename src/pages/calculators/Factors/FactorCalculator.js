@@ -153,16 +153,16 @@ function Factors(props) {
                       
                       if ( isPrime(r)) {
                         return (
-                          <Tooltip title="Prime" placement="top">
+                          <Tooltip title="Prime" placement="top" key={r}>
                             <Chip style={{margin: '5px'}} size='small' color='success' variant="filled" key={r} label={r.toLocaleString("en-US")} />
                           </Tooltip>
                         )
                       }
 
                       return (
-                        <Tooltip title="Composite" placement="top">
-                          <Chip style={{margin: '5px'}} size='small' color='primary' variant="filled" key={r} label={r.toLocaleString("en-US")} />
-                          </Tooltip>
+                        <Tooltip title="Composite" placement="top" key={r}>
+                          <Chip style={{margin: '5px'}} size='small' color='primary' variant="filled" label={r.toLocaleString("en-US")} />
+                        </Tooltip>
                       )
                     })}
                 </span>}
