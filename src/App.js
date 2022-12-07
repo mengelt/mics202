@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useRoutes } from "react-router-dom";
 import { Provider } from "react-redux";
 import { HelmetProvider, Helmet } from "react-helmet-async";
@@ -17,9 +17,6 @@ import { store } from "./redux/store";
 import createEmotionCache from "./utils/createEmotionCache";
 
 import { AuthProvider } from "./contexts/JWTContext";
-// import { AuthProvider } from "./contexts/FirebaseAuthContext";
-// import { AuthProvider } from "./contexts/Auth0Context";
-// import { AuthProvider } from "./contexts/CognitoContext";
 
 import { useNavigate } from "react-router-dom";
 
@@ -29,6 +26,11 @@ function App({ emotionCache = clientSideEmotionCache }) {
   const content = useRoutes(routes);
 
   const { theme } = useTheme();
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    navigate("/calculators/factors");
+  }, [])
 
   return (
     <CacheProvider value={emotionCache}>
@@ -48,5 +50,7 @@ function App({ emotionCache = clientSideEmotionCache }) {
     </CacheProvider>
   );
 }
+
+
 
 export default App;
