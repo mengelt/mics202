@@ -198,7 +198,7 @@ function QuadraticResidueCalculator(props) {
     <br />
     <Paper mt={3}>
 
-     TODO:
+    A modular square root of an integer number modulo an integer greater than 1 is an integer such that: r^2 ≡ a ( mod m ) 
     </Paper>
     </CardContent>
     </Card>
