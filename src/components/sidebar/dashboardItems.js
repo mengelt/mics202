@@ -48,10 +48,6 @@ const pagesSection = [
         title: "Extended Euclidean",
       },
       {
-        href: "/calculators/gcd",
-        title: "GCD",
-      },
-      {
         href: "/calculators/chinese",
         title: "CRT",
       },
