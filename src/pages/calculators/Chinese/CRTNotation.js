@@ -341,15 +341,14 @@ function CRTNotation(props) {
     <br />
     <Paper mt={3}>
 
-    The Chinese Remainder Theorem (CTR) uses the two building blocks of modular math and greatest common divisors (GCD). CTR gives a unique solution to simultaneous linear congruences with coprime moduli. 
+    The Chinese Remainder Theorem (CTR) uses the two building blocks of modular math and greatest common divisors (GCD).
+    CTR gives a unique solution to simultaneous linear congruences with coprime moduli. 
 
-When given an integer M, we want to first find its GCD.
+    <br /> <br />When given an integer M, we want to first find its GCD.
 
-Want to learn more about the GCD? Navigate on the left to learn more about the GCD.
+    <br />After the GCD is taken, we will begin to cycle through with the modular math of the GCD. 
 
-After the GCD is taken, we will begin to cycle through with the modular math of the GCD. 
 
-Want to learn more about Modular Math? Navigate on the left to learn more about modular math
 
 
     </Paper>
@@ -366,13 +365,19 @@ Want to learn more about Modular Math? Navigate on the left to learn more about 
 
     <br />
     <Paper mt={3}>
-    let’s use the number 15 as our value. Then break this down into the two steps of GCD and modular math to perform the CRT.
+    Let’s use the number 15 as our value. 
+    
+    <br /> <br />Then break this down into the two steps of GCD and modular math to perform the CRT.
 
-First: Finding the GCD of our value 15. So the number 15 has the GCD of 3 and 5. 
+    <br /> <br />First: Finding the GCD of our value 15. So the number 15 has the GCD of 3 and 5. 
 
-So, when we evaluate the CRT of numbers in Mod 15, we are actually going to be          evaluating them against mod 3 and mod 5!
+    <br /> <br />So, when we evaluate the CRT of numbers in Mod 15, we are actually going to be evaluating them against mod 3 and mod 5!
 
-To show this, 2 mod 15 would be evaluated as &lt;2 mod 3, 2 mod 5&gt;. Extending this, 7 mod 15 would be evaluated as &lt;7 mod 3, 7 mod 5&gt;, equaling &lt;1 mod 3, 2 mod 5&gt; respectively. And 15 mod 15 would be evaluated as &lt;15 mod 3, 15 mod 5&gt;, equaling &lt;0 mod 3, and 0 mod 5&gt; 
+    <br /> <br />To show this, 2 mod 15 would be evaluated as &lt;2 mod 3, 2 mod 5&gt;.
+
+    <br /> <br /> Extending this, 7 mod 15 would be evaluated as &lt;7 mod 3, 7 mod 5&gt;, = &lt;1 mod 3, 2 mod 5&gt; respectively. 
+    
+    <br /> <br />And 15 mod 15 would be evaluated as &lt;15 mod 3, 15 mod 5&gt;, = &lt;0 mod 3, and 0 mod 5&gt; 
 
     </Paper>
     </CardContent>
