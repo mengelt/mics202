@@ -8,36 +8,19 @@ export const quadratic_residue = (a, p) => {
         return null;
     }
 
-    // 111, 113
-
-    let ok = true;
     let idx = 1
-    while (ok) {
+    
+    while (idx < p) {
 
-        console.info({e: ( Math.pow(idx,2) % p === a )})
-        
-        if ( ( Math.pow(idx,2) % p === a )) {
-          //  console.info('found ', idx)
+        if ( ( Math.pow(idx,2) % p === +a )) {
             return idx
-        }
-
-        if ( idx > 1000 ) {
-            console.warn('quitting!')
-            ok = false;
         } else {
             idx++;
         }
 
     }
 
-    if ( ok === false )  {
-        return null
-    }
-
-    return idx;
-    
-
-    // find a value of x
+    return [-idx, idx];
 
 }
 
