@@ -202,6 +202,20 @@ function MICalculator(props) {
         Given an integer and the modulus, this calculator can find the other integer.
         <br /><br />
         The modular multiplicitive inverse has uses in public-key cryptography and the RSA algorithm.
+        <br /><br />
+        Example: A=3, C=7
+        <br /><br />
+Step 1. Calculate A * B mod C for B values 0 through C-1
+<br />
+<br /> 3 * 0 ≡ 0 (mod 7)
+<br /> 3 * 1 ≡ 3 (mod 7)
+<br /> 3 * 2 ≡ 6 (mod 7)
+<br /> 3 * 3 ≡ 9 ≡ 2 (mod 7)
+<br /> 3 * 4 ≡  12 ≡ 5 (mod 7)
+<br /> 3 * 5 ≡ 15 (mod 7) ≡ 1 (mod 7)
+<br /> 3 * 6 ≡ 18 (mod 7) ≡ 4 (mod 7)
+<br /><br />
+Step 2. The modular inverse of A mod C is the B value that makes A * B mod C = 5 is the modular inverse of 3 mod 7 since 5*3 mod 7 = 1
     </Paper>
     </CardContent>
     </Card>
