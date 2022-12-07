@@ -29,7 +29,7 @@ function App({ emotionCache = clientSideEmotionCache }) {
   const navigate = useNavigate();
   
   useEffect(() => {
-    navigate("/calculators/factors");
+   // navigate("/calculators/factors");
   }, [])
 
   return (

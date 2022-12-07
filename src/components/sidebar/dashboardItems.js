@@ -63,6 +63,45 @@ const pagesSection = [
   }
 ];
 
+const pagesSection2 = [
+      {
+        href: "/calculators/factors",
+        title: "Find Factors",
+      },
+      {
+        href: "/calculators/primefactorization",
+        title: "Prime Factorization",
+      },
+      {
+        href: "/calculators/eulerstotient",
+        title: "Euler's Totient Function",
+      },
+      {
+        href: "/calculators/residue",
+        title: "Modular Square Root",
+      },
+      {
+        href: "/calculators/multiplicitiveinverse",
+        title: "Multiplicitive Inverse",
+      },
+      {
+        href: "/calculators/extended",
+        title: "Extended Euclidean",
+      },
+      {
+        href: "/calculators/chinese",
+        title: "CRT",
+      },
+      {
+        href: "/calculators/systemofcongruence",
+        title: "System of Congruence",
+      },
+      {
+        href: "/calculators/Bases",
+        title: "Numerical Bases",
+      }
+];
+
 
 const aboutSection = [
   {
@@ -77,7 +116,7 @@ const aboutSection = [
 const navItems = [
   {
     title: "Tools",
-    pages: pagesSection,
+    pages: pagesSection2,
   },
 
   {

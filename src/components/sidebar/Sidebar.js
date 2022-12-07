@@ -9,6 +9,7 @@ import { Box, Chip, Drawer as MuiDrawer, ListItemButton } from "@mui/material";
 import { ReactComponent as Logo } from "../../vendor/logo.svg";
 import Footer from "./SidebarFooter";
 import SidebarNav from "./SidebarNav";
+import './glow.css';
 
 const Drawer = styled(MuiDrawer)`
   border-right: 0;
@@ -69,7 +70,7 @@ const Sidebar = ({ items, showFooter = true, ...rest }) => {
     <Drawer variant="permanent" {...rest}>
       <Brand component={NavLink} to="/">
         <Box ml={1}>
-          MICS202<span style={{color: 'yellow'}}>TOOLS</span>
+          MICS202<span style={{color: 'yellow'}}><span className="glow">TOOLS</span></span>
         </Box>
       </Brand>
       <SidebarNav items={items} />

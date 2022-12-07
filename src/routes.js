@@ -91,10 +91,6 @@ const routes = [
     element: <DashboardLayout />,
     children: [
       {
-        path: "default",
-        element: <Default />,
-      },      
-      {
         path: "primefactorization",
         element: <PrimeFactorization />
       },
