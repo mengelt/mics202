@@ -150,6 +150,8 @@ function EulersTotientCalculator(props) {
             <TextField
               m={2}
               required
+              InputLabelProps={{shrink: true}}
+              error={inputError === true}              
               inputRef={v1}
               id="standard-required"
               label="Enter Value for N"

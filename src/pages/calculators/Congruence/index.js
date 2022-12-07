@@ -38,11 +38,11 @@ function Chinese() {
 
   return (
     <React.Fragment>
-      <Helmet title="Chinese Remainder Theorem" />
+      <Helmet title="System of Congruence" />
       <Grid justifyContent="space-between" container spacing={6}>
         <Grid item>
           <Typography variant="h3" gutterBottom>
-            Chinese Remainder Theorem
+          System of Congruence
           </Typography>
         </Grid>
       </Grid>

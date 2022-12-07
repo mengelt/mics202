@@ -137,7 +137,7 @@ function CRTCalculator(props) {
         <Card mb={6}>
         <CardContent>
         <Typography variant="h5" component="div">
-      Solving a System of Congruence
+        Solve a System of Congruence
       </Typography>
       <Typography sx={{ mb: 1.5 }} color="text.secondary">
         When given coprime moduli and arbitrary integer values, the system of congruence has a solution.

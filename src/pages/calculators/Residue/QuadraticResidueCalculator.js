@@ -21,7 +21,7 @@ import {
     TextField,
     Popover,    
   } from "@mui/material";
-import { areCoprime, gcd_two_values, multiplicitive_inverse, quadratic_residue } from '../../../utils/mathUtils';
+import { areCoprime, gcd_two_values, isPositiveInteger, multiplicitive_inverse, quadratic_residue } from '../../../utils/mathUtils';
 
 
 import { spacing } from "@mui/system";
@@ -95,20 +95,31 @@ function QuadraticResidueCalculator(props) {
 
     const handleSolutionClick = () => {
 
-      let isCoprime = areCoprime(v1.current.value, v2.current.value) === true 
+      let inputValue1 = isPositiveInteger(v1.current.value);
+      let inputValue2 = isPositiveInteger(v2.current.value);
 
-      if ( isCoprime ) {
-
-        let residue = quadratic_residue(v1.current.value, v2.current.value);
-        console.info({residue})
-        setResult(residue);
-
-      } else {
-        setInputError(`${v1.current.value} and ${v2.current.value} are not coprime. This has no solution.`)
-        setResult(null);
-      }
+      if ( inputValue1 === false || inputValue2 === false ) {
       
-      setResultComplete(true);
+        setInputError(true);
+        setResult(null)
+        setResultComplete(false);
+        return;
+      
+      } else {
+
+        let isCoprime = areCoprime(v1.current.value, v2.current.value);
+
+        if ( isCoprime ) {
+          let residue = quadratic_residue(v1.current.value, v2.current.value);
+          setResult(residue);
+        } else {
+          //setInputError(`${v1.current.value} and ${v2.current.value} are not coprime. This has no solution.`)
+          setResult(null);
+        }
+        
+        setResultComplete(true);
+  
+      }
 
     }
 
@@ -126,9 +137,11 @@ function QuadraticResidueCalculator(props) {
             <Typography variant="h5" component="div">
               Modular Square Root
             </Typography>
+            {/*
             <Typography sx={{ mb: 1.5 }} color="text.secondary">
               When both values are coprime, a solution exists.
             </Typography>
+    */}
 
             <br />
             <Paper mt={3}>
@@ -136,24 +149,31 @@ function QuadraticResidueCalculator(props) {
             <TextField
               m={2}
               inputRef={v1}
+              error={inputError === true}
               id="standard-required"
               label="Enter Value for A"
+              InputLabelProps={{shrink: true}}
             />
             <br /><br />
             <TextField
               m={2}
               inputRef={v2}
+              error={inputError === true}
               id="standard-required"
               label="Enter Modulo"
               onKeyUp={handleKeyUp}
+              InputLabelProps={{shrink: true}}
               />
             </form>
             </Paper>
 
-            <span>
+            
+            <br />
+            {inputError &&
+              <Alert severity="error">Missing or invalid input!</Alert>
+            }
 
-
-            {resultComplete && 
+            {resultComplete === true && 
                 <span>
                     <br />
                     {result === null && <Alert severity="error">No solution exists. Check your inputs and ensure they are coprime!</Alert>}
@@ -161,7 +181,7 @@ function QuadraticResidueCalculator(props) {
                 </span>}
             <br />
  
-        </span>
+        
         </CardContent>
         <CardActions>
             <Button size="small" onClick={handleSolutionClick}>Calculate</Button>
@@ -198,7 +218,8 @@ function QuadraticResidueCalculator(props) {
     <br />
     <Paper mt={3}>
 
-    A modular square root of an integer number modulo an integer greater than 1 is an integer such that: r^2 ≡ a ( mod m ) 
+    A modular square root of an integer modulo another integer greater than 1 is a value such that: r^2 ≡ a ( mod m ).
+    <br />This calculator can locate the value or r when a solution exists.
     </Paper>
     </CardContent>
     </Card>

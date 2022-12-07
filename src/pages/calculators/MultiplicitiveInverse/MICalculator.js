@@ -21,7 +21,7 @@ import {
     TextField,
     Popover,    
   } from "@mui/material";
-import { areCoprime, gcd_two_values, multiplicitive_inverse } from '../../../utils/mathUtils';
+import { areCoprime, gcd_two_values, isPositiveInteger, multiplicitive_inverse } from '../../../utils/mathUtils';
 
 
 import { spacing } from "@mui/system";
@@ -55,7 +55,8 @@ function MICalculator(props) {
 
     const [working, setWorking] = useState(false);
     const [result, setResult] = useState(null);
-    
+    const [inputError, setInputError] = useState(false);
+
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);    
@@ -66,6 +67,7 @@ function MICalculator(props) {
 
     const handleRandomize = () => {
 
+        setInputError(false);
         setResultComplete(false);
         setResult(null);
 
@@ -86,6 +88,7 @@ function MICalculator(props) {
 
         setResultComplete(false);
         setResult(null);
+        setInputError(false);
 
         v1.current.value = null;
         v2.current.value = null;
@@ -94,18 +97,33 @@ function MICalculator(props) {
 
     const handleSolutionClick = () => {
 
-      let isCoprime = areCoprime(v1.current.value, v2.current.value) === true 
+      let inputValue1 = isPositiveInteger(v1.current.value);
+      let inputValue2 = isPositiveInteger(v2.current.value);
 
-      if ( isCoprime ) {
-
-        let inverse = multiplicitive_inverse(v1.current.value, v2.current.value);
-        setResult(inverse);
-
+      if ( inputValue1 === false || inputValue2 === false ) {
+        setInputError(true);
+        setResult(null)
+        setResultComplete(false);
+        return;
       } else {
-        setResult(null);
-      }
-      
-      setResultComplete(true);
+
+        let isCoprime = areCoprime(v1.current.value, v2.current.value) === true 
+
+        if ( isCoprime ) {
+  
+          let inverse = multiplicitive_inverse(v1.current.value, v2.current.value);
+          setResult(inverse);
+  
+        } else {
+          setResult(null);
+        }
+        
+        setInputError(false);
+        setResultComplete(true);
+
+      }      
+
+
 
     }
 
@@ -132,6 +150,8 @@ function MICalculator(props) {
           <form noValidate autoComplete="off">
             <TextField
               m={2}
+              error={inputError === true}
+              InputLabelProps={{shrink: true}}
               inputRef={v1}
               id="standard-required"
               label="Enter Value for A"
@@ -139,6 +159,8 @@ function MICalculator(props) {
             <br /><br />
             <TextField
               m={2}
+              error={inputError === true}
+              InputLabelProps={{shrink: true}}
               inputRef={v2}
               id="standard-required"
               label="Enter Modulo"
@@ -148,11 +170,13 @@ function MICalculator(props) {
             </Paper>
 
             <span>
-
+            <br />
+            {inputError &&
+              <Alert severity="error">Missing or invalid input!</Alert>
+            }
 
             {resultComplete && 
                 <span>
-                    <br />
                     {result === null && <Alert severity="error">No solution exists. Check your inputs and ensure they are coprime!</Alert>}
                     {result !== null && <Alert severity="success">The modular multiplicitive inverse is <strong>b = {result}</strong>  and satisfies <Latex displayMode={true}>$$ab \equiv1\pmod n$$</Latex></Alert>}
                 </span>}

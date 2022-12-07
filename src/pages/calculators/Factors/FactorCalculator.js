@@ -126,6 +126,8 @@ function Factors(props) {
               <TextField
                 m={2}
                 required
+                error={inputError === true}
+                InputLabelProps={{shrink: true}}
                 inputRef={v1}
                 id="standard-required"
                 label="Enter Value for N"

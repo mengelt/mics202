@@ -82,7 +82,7 @@ function ExtendedGCDCalculator(props) {
 
         setResultComplete(false);
         setResult(null);
-        setInputError(null);
+        setInputError(false);
 
         v1.current.value = null;
         v2.current.value = null;
@@ -132,13 +132,17 @@ function ExtendedGCDCalculator(props) {
             <Typography variant="h5" component="div">
               Extended Euclidean Algorithm Calculator
             </Typography>
-
+            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+              Determine the Greated Common Divisor for two integer and Bezout&apos; Identity coefficients   
+            </Typography>
             <br />
             <Paper mt={3}>
           <form noValidate autoComplete="off">
             <TextField
               m={2}
               inputRef={v1}
+              InputLabelProps={{shrink: true}}
+              error={inputError === true}
               id="standard-required"
               label="Enter Value for A"
             />
@@ -146,6 +150,8 @@ function ExtendedGCDCalculator(props) {
             <TextField
               m={2}
               inputRef={v2}
+              InputLabelProps={{shrink: true}}
+              error={inputError === true}
               id="standard-required"
               label="Enter Value for B"
               onKeyUp={handleKeyUp}
