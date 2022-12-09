@@ -32,6 +32,7 @@ const Bases = async(() => import("./pages/calculators/Bases"));
 
 // About
 const About = async(() => import("./pages/about"));
+const Future = async(() => import("./pages/future"));
 
 // Dashboard components
 const Default = async(() => import("./pages/calculators/Factors"));
@@ -50,8 +51,8 @@ const routes = [
         element: <About />,
       },
       {
-        path: "factors",
-        element: <Factors />,
+        path: "future",
+        element: <Future />,
       },
       {
         path: "eulerstotient",

@@ -6,6 +6,7 @@ import {
   CreditCard,
   Grid,
   Heart,
+  Info,
   Layout,
   List,
   Map,
@@ -108,6 +109,11 @@ const aboutSection = [
     href: "/about",
     icon: HelpCircle,
     title: "About this Site"
+  },
+  {
+    href: "/future",
+    icon: Info,
+    title: "What's Next?"
   },
 ];
 
