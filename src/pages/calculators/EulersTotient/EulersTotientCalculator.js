@@ -229,7 +229,9 @@ Euler’s totient function is the mathematical multiplicative function that coun
             <Typography variant="h5" component="div">
               {ADDITIONAL_READING_HEADER}
             </Typography>
-
+            <Typography sx={{ mb: 1.5 }} color="text.secondary">
+              Links open in a new tab
+            </Typography>
             
             <Paper mt={3}>
             <a href="https://en.wikipedia.org/wiki/Euler%27s_totient_function" target="_blank" rel="noopener noreferrer">Euler&apos;s Totient on Wikipedia</a><br />

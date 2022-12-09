@@ -250,7 +250,9 @@ Step 2. The modular inverse of A mod C is the B value that makes A * B mod C = 5
     <Typography variant="h5" component="div">
       {ADDITIONAL_READING_HEADER}
     </Typography>
-
+    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+              Links open in a new tab
+            </Typography>
 
     <Paper mt={3}>
     <a href="https://en.wikipedia.org/wiki/Modular_multiplicative_inverse" target="_blank" rel="noopener noreferrer">Modular Multiplicitive Inverse on Wikipedia</a><br />
