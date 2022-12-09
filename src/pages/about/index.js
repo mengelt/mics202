@@ -54,6 +54,15 @@ function About() {
 
             </Typography>
 
+            <Typography sx={{ mb: 1.5 }} color="text.primary">
+
+            <br />
+
+            Source code can be found here <a href="https://github.com/mengelt/mics202" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+
+            </Typography>
+            
+
             <br />
 
         </CardContent>
