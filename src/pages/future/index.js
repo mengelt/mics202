@@ -27,7 +27,7 @@ const Card = styled(MuiCard)(spacing);
 
 
 
-function About() {
+function Future() {
   const { t } = useTranslation();
 
   return (
@@ -47,6 +47,8 @@ function About() {
                 <li>Most of the calculators would benefit from hardening, more checks for invalid inputs</li>
                 <li>Some calculators are not currently accepting negative numbers when they probably should be</li>
                 <li>Translate user input into Sage input with copy and paste functionality (credit: Aaron Crouch)</li>
+                <li>The calculators were put together quickly and need more rigorous testing to ensure accuracy</li>
+                <li>The calculators that allow randomization of inputs should be smarter - e.g., only generate coprime values when that is what the calculator needs</li>
                 <li>Automated tests for the core math functions</li>
                 <li>Linting, code cleanup, general housekeeping</li>
               </ul>
@@ -62,4 +64,4 @@ function About() {
   );
 }
 
-export default About;
+export default Future;
