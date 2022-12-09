@@ -40,7 +40,7 @@ function About() {
             </Typography>
             <Typography sx={{ mb: 1.5 }} color="text.secondary">
             
-              MICS202Tools is the final project for Jeremy Colvin, Mark Mengelt, and Callie Stull for Cyber 202 in the Fall 2022 semester.
+              MICS202Tools is the final project for Jeremy Colvin, Mark Mengelt, and Callie Stull for Aaron Crouch&apos;s CYBER202 course during the Fall 2022 semester.
 
             </Typography>
 
